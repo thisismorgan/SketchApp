@@ -14,6 +14,7 @@ Menu.prototype =
 	undo: null,
 	clear: null,
 	option: null,
+	brush: null,
 
 
 	init: function()
@@ -35,12 +36,12 @@ Menu.prototype =
 		this.form = document.createElement("form");
 		this.select = document.createElement("select");
 		this.option = document.createElement("option");
-		this.option.id = 1;
+		this.option.value = "pencil";
 		this.option.innerHTML = "pencil";
 		this.select.appendChild(this.option);
 
 		this.option = document.createElement("option");
-		this.option.id = 2;
+		this.option.value= "pixel";
 		this.option.innerHTML = "pixel";
 
 		
@@ -78,21 +79,22 @@ Menu.prototype =
 
 }
 
+// provides functionality to drop-down menu for brush selection
 function menuChanged() {
-	if (menu.option.id == 1){
-		console.log("You're using the pencil");
+	if (menu.select.value == "pencil"){
+		this.brush = "pencil";
 	}
 	else{
-		if (menu.option.id ==2){
-			console.log("You're using the pixel");
+		if (menu.select.value == "pixel"){
+			this.brush = "pixel";
 		}
 		else{
-			console.log("Something is wrong!");
+			console.log("Error in menuChanged");
 		}
 	}
+	return this.brush;
 }
 
 
 menu = new Menu();
 menu.select.onchange = menuChanged;
-//menu.select.addEventListener('change', console.log("Hello"), false);

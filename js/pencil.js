@@ -8,7 +8,6 @@ pencil.prototype.constructor = pencil;
 
 pencil.prototype.draw = function(pair, current_segment, all_segments, context)
 {
-	console.log("Line drawn function called.")
 	current_segment.push(pair);
 	for(i=0; i<current_segment.length; i++){
 		if (i == 0) {

@@ -84,7 +84,19 @@ penTool.prototype.handleEvent = function(event){
 				y: y
 			};
 			penTool.prototype.addPosToBuffer(x, y, this.increment);
+			
+			// selects appropriate draw function for the tool selected
+			if (menuChanged() == "pixel"){
 			pixel.prototype.draw(last, this.current_segment, this.all_segments, this.context);
+			}
+			else{
+				if (menuChanged() == "pencil"){
+				pencil.prototype.draw(last, this.current_segment, this.all_segments, this.context);
+				}
+				else {
+					console.log(menu.brush);
+				}
+			}
 			this.current_segment = [];
 			this.line_drawn = false
 			break;
