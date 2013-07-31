@@ -24,7 +24,7 @@ penTool.prototype.getMousePos = function(canvas, event)
 	var rect = canvas.getBoundingClientRect();
 		return{
 			x: event.clientX - rect.left,
-			y: event.clientY - rect.top - 0.5625
+			y: event.clientY - rect.top
 
 		};
 }

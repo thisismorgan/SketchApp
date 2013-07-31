@@ -8,7 +8,6 @@ pixel.prototype.constructor = pixel;
 
 pixel.prototype.draw = function(pair, current_segment, all_segments, context)
 {
-	console.log("Pixel drawn function called.")
 	current_segment.push(pair);
 	for (i=0; i<max_x; i++){
 		for (j=0; j<max_y; j++){
