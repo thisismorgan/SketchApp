@@ -26,6 +26,14 @@ Menu.prototype =
 		this.container.style.left = "0px";
 		this.container.style.height = window.innerHeight;
 		this.container.style.width = "200px";
+
+		logo = document.createElement("img");
+		logo.src = "img/hipster_draw.png";
+		this.container.appendChild(logo);
+
+		space = document.createElement("div");
+		this.container.appendChild(space);
+
 		title = document.createTextNode("hipster draw");
 		this.container.appendChild(title);
 
@@ -62,7 +70,7 @@ Menu.prototype =
 
 		// undo button
 		this.undo = document.createElement("button");
-		this.undo.innerHTML = "Undo!";
+		this.undo.innerHTML = "Undo That Move";
 		this.container.appendChild(this.undo);
 
 		space = document.createElement("div");
@@ -70,7 +78,7 @@ Menu.prototype =
 
 		// clear button
 		this.clearImage = document.createElement("button");
-		this.clearImage.innerHTML = "Clear!";
+		this.clearImage.innerHTML = "Clear Your Drawing";
 		this.container.appendChild(this.clearImage);
 
 		document.body.appendChild(this.container);
@@ -82,17 +90,18 @@ Menu.prototype =
 // provides functionality to drop-down menu for brush selection
 function menuChanged() {
 	if (menu.select.value == "pencil"){
-		this.brush = "pencil";
+		menu.brush = "pencil";
+
 	}
 	else{
 		if (menu.select.value == "pixel"){
-			this.brush = "pixel";
+			menu.brush = "pixel";
 		}
 		else{
 			console.log("Error in menuChanged");
 		}
 	}
-	return this.brush;
+	return menu.brush;
 }
 
 
