@@ -1,5 +1,3 @@
-// grabbing the canvas from the html page and assigning it to the JS variable canvas
-//var canvas = document.getElementById("art");
 
 // creation of the penTool class
 function penTool() {
@@ -9,7 +7,6 @@ function penTool() {
 	this.all_segments = [];
 	this.line_drawn = false;
 	this.buffer = buffer
-	//this.context = canvas.getContext("2d");
 	surface.canvas.addEventListener('mousedown', this, false);
 	surface.canvas.addEventListener('mousemove', this, false);
 	surface.canvas.addEventListener('mouseup', this, false);
@@ -128,8 +125,19 @@ penTool.prototype.handleEvent = function(event){
 			};
 			penTool.prototype.addPosToBuffer(x, y, this.increment);
 			current_tool = selectTool();
-			tool = eval("new " + current_tool + "()");
-			tool.draw(last, this.current_segment, this.all_segments, surface.context);
+			
+			// selects appropriate draw function for the tool selected
+			if (current_tool == "pixel"){
+			pixel.draw(last, this.current_segment, this.all_segments, surface.context);
+			}
+			else{
+				if (current_tool == "pencil"){
+				pencil.draw(last, this.current_segment, this.all_segments, surface.context);
+				}
+				else {
+					console.log(menu.brush);
+				}
+			}
 			this.current_segment = [];
 			this.line_drawn = false
 			break;

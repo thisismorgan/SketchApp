@@ -30,4 +30,4 @@ pencil.prototype.draw = function(pair, current_segment, all_segments, context)
 	return current_segment;
 }
 
-// pencil = new pencil();
+pencil = new pencil();

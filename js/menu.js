@@ -60,6 +60,33 @@ Menu.prototype =
 		space = document.createElement("div");
 		this.container.appendChild(space);
 
+		this.colordiv = document.createElement("div");
+		this.colordiv.style.align = "center";
+		this.colordiv.style.overflow = "hidden";
+
+		this.firstColor = document.createElement("div");
+		this.firstColor.style.float = "left";
+		this.firstColor.style.width = "20px";
+		this.firstColor.style.height = "10px";
+		this.firstColor.style.background = "#000046";
+		this.colordiv.appendChild(this.firstColor);
+
+		this.secondColor = document.createElement("div");
+		this.secondColor.style.float = "left";
+		this.secondColor.style.width = "20px";
+		this.secondColor.style.height = "10px";
+		this.secondColor.style.background = "#FFF836";
+		this.colordiv.appendChild(this.secondColor);
+
+		this.container.appendChild(this.colordiv);
+
+		breakHere = document.createElement("br");
+		this.container.appendChild(breakHere);
+
+		space = document.createElement("div");
+		this.container.appendChild(space);
+
+
 		// button for saving images
 		this.save = document.createElement("button");
 		this.save.innerHTML = "Save That Drawing";
@@ -104,6 +131,22 @@ function menuChanged() {
 	return menu.brush;
 }
 
+// function that clears canvas --need to optimize so it also clears the buffer
+function clearCanvas(){
+	canvas.width = canvas.width;
+}
+
+// two functions to show/hide menu according to mouse placement
+function mouseLeave(){
+	menu.container.style.left = "-180px";
+}
+
+function mouseHover(){
+	menu.container.style.left = "0px";
+}
 
 menu = new Menu();
 menu.select.onchange = menuChanged;
+menu.container.onmouseout = mouseLeave;
+menu.container.onmouseover = mouseHover;
+menu.clearImage.addEventListener('click', clearCanvas, false);

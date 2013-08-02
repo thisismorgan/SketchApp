@@ -21,5 +21,7 @@ function selectTool(){
 }
 
 
+
+
 surface = new Surface();
 surface.canvas.addEventListener('mouseup', selectTool, false);

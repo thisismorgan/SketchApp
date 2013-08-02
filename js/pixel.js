@@ -22,4 +22,4 @@ pixel.prototype.draw = function(pair, current_segment, all_segments, context)
 	return current_segment;
 }
 
-// pixel = new pixel();
+pixel = new pixel();
