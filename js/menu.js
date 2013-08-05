@@ -45,6 +45,7 @@ Menu.prototype =
 		// creates a drop-down menu for brushes
 		this.form = document.createElement("form");
 		this.select = document.createElement("select");
+		
 		this.option = document.createElement("option");
 		this.option.value = "pencil";
 		this.option.innerHTML = "pencil";
@@ -53,9 +54,13 @@ Menu.prototype =
 		this.option = document.createElement("option");
 		this.option.value= "pixel";
 		this.option.innerHTML = "pixel";
-
-		
 		this.select.appendChild(this.option);
+		
+		this.option = document.createElement("option");
+		this.option.value= "feather";
+		this.option.innerHTML = "feather";
+		this.select.appendChild(this.option);
+
 		this.form.appendChild(this.select);
 		this.container.appendChild(this.form);
 
@@ -172,13 +177,14 @@ function menuChanged() {
 		menu.brush = "pencil";
 
 	}
+	else if (menu.select.value == "pixel"){
+		menu.brush = "pixel";
+	}
+	else if (menu.select.value == "feather"){
+		menu.brush = "feather";
+	}
 	else{
-		if (menu.select.value == "pixel"){
-			menu.brush = "pixel";
-		}
-		else{
-			console.log("Error in menuChanged");
-		}
+		console.log("Error in menuChanged");
 	}
 	return menu.brush;
 }

@@ -8,20 +8,19 @@ pencil.prototype.constructor = pencil;
 
 pencil.prototype.draw = function(pair, current_segment, all_segments, context)
 {
+	context.lineWidth = 2;
+	context.lineCap = "round";
+	context.strokeStyle = menu.swatch;
 	current_segment.push(pair);
-	for(i=0; i<current_segment.length; i++){
+	for(i=0; i<current_segment.length - 2; i++){
 		if (i == 0) {
 			var start_point = current_segment[0];
 			context.beginPath();
 			context.moveTo(start_point.x, start_point.y);
 		}
-		if (i%3 == 0) {
-			var next_point = current_segment[i];
-			context.lineTo(next_point.x, next_point.y);
-		}
-		context.lineWidth = 0.8;
-		context.lineCap = "round";
-		context.strokeStyle = menu.swatch;
+		var xc = (current_segment[i].x + current_segment[i+1].x) / 2;
+		var yc = (current_segment[i].y + current_segment[i+1].y) / 2;
+		context.quadraticCurveTo(current_segment[i].x,current_segment[i].y, xc, yc);
 		context.stroke();
 	}
 	
@@ -31,3 +30,4 @@ pencil.prototype.draw = function(pair, current_segment, all_segments, context)
 }
 
 pencil = new pencil();
+

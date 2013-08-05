@@ -1,12 +1,12 @@
 
 // creation of the penTool class
 function penTool() {
-	this.increment = 2
-	this.event = event
+	this.increment = 2;
+	this.event = event;
 	this.current_segment = [];
 	this.all_segments = [];
 	this.line_drawn = false;
-	this.buffer = buffer
+	this.buffer = buffer;
 	surface.canvas.addEventListener('mousedown', this, false);
 	surface.canvas.addEventListener('mousemove', this, false);
 	surface.canvas.addEventListener('mouseup', this, false);
@@ -88,16 +88,18 @@ penTool.prototype.handleEvent = function(event){
 			
 			// selects appropriate draw function for the tool selected
 			if (current_tool == "pixel"){
-			pixel.draw(last, this.current_segment, this.all_segments, surface.context);
+				pixel.draw(last, this.current_segment, this.all_segments, surface.context);
+			}
+			else if (current_tool == "pencil"){
+				pencil.draw(last, this.current_segment, this.all_segments, surface.context);
+			}
+			else if (current_tool == "feather") {
+				feather.draw(last, this.current_segment, this.all_segments, surface.context)
 			}
 			else{
-				if (current_tool == "pencil"){
-				pencil.draw(last, this.current_segment, this.all_segments, surface.context);
-				}
-				else {
-					console.log(menu.brush);
-				}
+				console.log(menu.brush);
 			}
+
 			this.current_segment = [];
 			this.line_drawn = false
 			break;
