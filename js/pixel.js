@@ -9,14 +9,11 @@ pixel.prototype.constructor = pixel;
 pixel.prototype.draw = function(pair, current_segment, all_segments, context)
 {
 	current_segment.push(pair);
-	for (i=0; i<max_x; i++){
-		for (j=0; j<max_y; j++){
-			if (buffer[i][j] != 0){
-				context.fillStyle = menu.swatch;
-				context.fillRect(i, j, 2, 2);
-			}
+	for(i=0; i<current_segment.length; i++){
+		context.fillStyle = menu.swatch;
+		context.fillRect(current_segment[i].x, current_segment[i].y, 2, 2);
 		}
-	}
+
 	all_segments.push(current_segment);
 	current_segment = [];
 	return current_segment;

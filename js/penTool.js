@@ -24,15 +24,6 @@ penTool.prototype.getMousePos = function(canvas, event)
 		};
 }
 	
-penTool.prototype.addPosToBuffer = function(x, y, increment)
-{
-	buffer[x][y] = this.increment
-}
-	
-penTool.prototype.addStartPosToBuffer = function(x, y)
-{
-	buffer[x][y] = 1
-}
 
 penTool.prototype.draw = function(pair, current_segment, all_segments, context)
 {
@@ -42,49 +33,6 @@ penTool.prototype.draw = function(pair, current_segment, all_segments, context)
 	return current_segment;
 }
 
-// penTool.prototype.mouseDown = function(event){
-// 	var mousePos = penTool.prototype.getMousePos(canvas, event);
-// 	var x = mousePos.x;
-// 	var y = mousePos.y;
-// 	var start = {
-// 		x: x,
-// 		y: y
-// 	};
-// 	penTool.prototype.addStartPosToBuffer(x, y);
-// 	this.current_segment.push(start)
-// 	this.line_drawn = true;
-// }
-
-// penTool.prototype.mouseMove = function(event){
-// 	if (this.line_drawn == true){
-// 	var mousePos = penTool.prototype.getMousePos(canvas, event);
-// 	var x = mousePos.x;
-// 	var y = mousePos.y;
-// 	var next = {
-// 		x: x,
-// 		y: y
-// 	};
-// 	penTool.prototype.addPosToBuffer(x, y, this.increment);
-// 	this.current_segment.push(next)
-// 	this.increment = this.increment + 1
-// 	}
-// }
-
-// penTool.prototype.mouseUp = function(event){
-// 	var mousePos = penTool.prototype.getMousePos(surface.canvas, event);
-// 	var x = mousePos.x;
-// 	var y = mousePos.y;
-// 	var last = {
-// 		x: x,
-// 		y: y
-// 	};
-// 	penTool.prototype.addPosToBuffer(x, y, this.increment);
-// 	current_tool = selectTool();
-// 	tool = eval("new " + current_tool + "()");
-// 	tool.draw(last, this.current_segment, this.all_segments, surface.context);
-// 	this.current_segment = [];
-// 	this.line_drawn = false
-// }
 
 
 penTool.prototype.handleEvent = function(event){
@@ -112,7 +60,6 @@ penTool.prototype.handleEvent = function(event){
 			// 	current_stroke = all_strokes[i];
 			// 	current_stroke.tool... current_stroke.coord_list
 			// }
-			penTool.prototype.addStartPosToBuffer(x, y);
 			this.current_segment.push(start)
 			this.line_drawn = true;
 			break;
@@ -125,7 +72,6 @@ penTool.prototype.handleEvent = function(event){
 				x: x,
 				y: y
 			};
-			penTool.prototype.addPosToBuffer(x, y, this.increment);
 			this.current_segment.push(next)
 			this.increment = this.increment + 1
 			}
@@ -138,7 +84,6 @@ penTool.prototype.handleEvent = function(event){
 				x: x,
 				y: y
 			};
-			penTool.prototype.addPosToBuffer(x, y, this.increment);
 			current_tool = selectTool();
 			
 			// selects appropriate draw function for the tool selected
