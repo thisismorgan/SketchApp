@@ -97,6 +97,21 @@ penTool.prototype.handleEvent = function(event){
 				x: x,
 				y: y
 			};
+			// all_strokes = [
+			//   {
+			//   	tool: pencil,
+			//   	coord_list: [{x:1, y:2}, {x:2, y:3}, ...]
+			//   }, 
+			//   {
+			//   	tool: pixel,
+			//   	coord_list: [{x:4, y:3}, ...]
+			//   }, 
+			//   ...
+			//   ]
+			// for (var i = 0; i < all_strokes.length; i++) {
+			// 	current_stroke = all_strokes[i];
+			// 	current_stroke.tool... current_stroke.coord_list
+			// }
 			penTool.prototype.addStartPosToBuffer(x, y);
 			this.current_segment.push(start)
 			this.line_drawn = true;

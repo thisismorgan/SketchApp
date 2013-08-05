@@ -15,6 +15,7 @@ Menu.prototype =
 	clear: null,
 	option: null,
 	brush: null,
+	swatch: null,
 
 
 	init: function()
@@ -26,6 +27,7 @@ Menu.prototype =
 		this.container.style.left = "0px";
 		this.container.style.height = window.innerHeight;
 		this.container.style.width = "200px";
+		this.container.style['-webkit-transition'] = "left 2s";
 
 		logo = document.createElement("img");
 		logo.src = "img/hipster_draw.png";
@@ -60,23 +62,68 @@ Menu.prototype =
 		space = document.createElement("div");
 		this.container.appendChild(space);
 
+		//color swatches
 		this.colordiv = document.createElement("div");
-		this.colordiv.style.align = "center";
+		this.colordiv.class = "color";
 		this.colordiv.style.overflow = "hidden";
 
 		this.firstColor = document.createElement("div");
-		this.firstColor.style.float = "left";
-		this.firstColor.style.width = "20px";
-		this.firstColor.style.height = "10px";
+		this.firstColor.id = "#000046";
+		this.firstColor.style.display = "inline-block";
+		this.firstColor.style.margin = "3px";
+		this.firstColor.style['border-radius'] = "22px";
+		this.firstColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
+		this.firstColor.style.width = "30px";
+		this.firstColor.style.height = "30px";
 		this.firstColor.style.background = "#000046";
 		this.colordiv.appendChild(this.firstColor);
 
 		this.secondColor = document.createElement("div");
-		this.secondColor.style.float = "left";
-		this.secondColor.style.width = "20px";
-		this.secondColor.style.height = "10px";
+		this.secondColor.id = "#FFF836";
+		this.secondColor.style.display = "inline-block";
+		this.secondColor.style.margin = "3px";
+		this.secondColor.style['border-radius'] = "22px";		
+		this.secondColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
+		this.secondColor.style.width = "30px";
+		this.secondColor.style.height = "30px";
 		this.secondColor.style.background = "#FFF836";
 		this.colordiv.appendChild(this.secondColor);
+
+		this.thirdColor = document.createElement("div");
+		this.thirdColor.id = "#AAFA9F";
+		this.thirdColor.style.display = "inline-block";
+		this.thirdColor.style.margin = "3px";
+		this.thirdColor.style['border-radius'] = "22px";		
+		this.thirdColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
+		this.thirdColor.style.width = "30px";
+		this.thirdColor.style.height = "30px";
+		this.thirdColor.style.background = "#AAFA9F";
+		this.colordiv.appendChild(this.thirdColor);
+		
+		breakHere = document.createElement("br");
+		this.colordiv.appendChild(breakHere);
+
+		this.fourthColor = document.createElement("div");
+		this.fourthColor.id = "#690735";
+		this.fourthColor.style.display = "inline-block";
+		this.fourthColor.style.margin = "3px";
+		this.fourthColor.style['border-radius'] = "22px";		
+		this.fourthColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
+		this.fourthColor.style.width = "30px";
+		this.fourthColor.style.height = "30px";
+		this.fourthColor.style.background = "#690735";
+		this.colordiv.appendChild(this.fourthColor);
+
+		this.fifthColor = document.createElement("div");
+		this.fifthColor.id = "#3D4051";
+		this.fifthColor.style.display = "inline-block";
+		this.fifthColor.style.margin = "3px";
+		this.fifthColor.style['border-radius'] = "22px";		
+		this.fifthColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
+		this.fifthColor.style.width = "30px";
+		this.fifthColor.style.height = "30px";
+		this.fifthColor.style.background = "#3D4051";
+		this.colordiv.appendChild(this.fifthColor);
 
 		this.container.appendChild(this.colordiv);
 
@@ -114,6 +161,11 @@ Menu.prototype =
 
 }
 
+//color selection function
+function colorSwatch(event){
+	menu.swatch = event.target.id;
+}
+
 // provides functionality to drop-down menu for brush selection
 function menuChanged() {
 	if (menu.select.value == "pencil"){
@@ -149,4 +201,14 @@ menu = new Menu();
 menu.select.onchange = menuChanged;
 menu.container.onmouseout = mouseLeave;
 menu.container.onmouseover = mouseHover;
+
+
+menu.firstColor.addEventListener('click', colorSwatch, false);
+menu.secondColor.addEventListener('click', colorSwatch, false);
+menu.thirdColor.addEventListener('click', colorSwatch, false);
+menu.fourthColor.addEventListener('click', colorSwatch, false);
+menu.fifthColor.addEventListener('click', colorSwatch, false);
+
+
+
 menu.clearImage.addEventListener('click', clearCanvas, false);

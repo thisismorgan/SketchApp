@@ -19,9 +19,9 @@ pencil.prototype.draw = function(pair, current_segment, all_segments, context)
 			var next_point = current_segment[i];
 			context.lineTo(next_point.x, next_point.y);
 		}
-		context.lineWidth = 1;
+		context.lineWidth = 0.8;
 		context.lineCap = "round";
-		context.strokeStyle = "rgb(139, 137, 137)";
+		context.strokeStyle = menu.swatch;
 		context.stroke();
 	}
 	

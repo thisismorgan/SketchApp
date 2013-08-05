@@ -12,7 +12,7 @@ pixel.prototype.draw = function(pair, current_segment, all_segments, context)
 	for (i=0; i<max_x; i++){
 		for (j=0; j<max_y; j++){
 			if (buffer[i][j] != 0){
-				context.fillStyle = "rgb(139,137,137)";
+				context.fillStyle = menu.swatch;
 				context.fillRect(i, j, 2, 2);
 			}
 		}
