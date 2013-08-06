@@ -91,10 +91,14 @@ penTool.prototype.handleEvent = function(event){
 				pixel.draw(last, this.current_segment, this.all_segments, surface.context);
 			}
 			else if (current_tool == "pencil"){
-				pencil.draw(last, this.current_segment, this.all_segments, surface.context);
+				pencil.draw(last, this.current_segment, this.all_segments, surface.context, false);
 			}
 			else if (current_tool == "feather") {
 				feather.draw(last, this.current_segment, this.all_segments, surface.context)
+			}
+			else if (current_tool == "buzz"){
+				buzz.draw(last, this.current_segment, this.all_segments, surface.context)
+
 			}
 			else{
 				console.log(menu.brush);

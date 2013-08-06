@@ -36,8 +36,8 @@ Menu.prototype =
 		space = document.createElement("div");
 		this.container.appendChild(space);
 
-		title = document.createTextNode("hipster draw");
-		this.container.appendChild(title);
+		// title = document.createTextNode("hipster draw");
+		// this.container.appendChild(title);
 
 		space = document.createElement("div");
 		this.container.appendChild(space);
@@ -61,16 +61,50 @@ Menu.prototype =
 		this.option.innerHTML = "feather";
 		this.select.appendChild(this.option);
 
+		this.option = document.createElement("option");
+		this.option.value= "buzz";
+		this.option.innerHTML = "buzz";
+		this.select.appendChild(this.option);
+
 		this.form.appendChild(this.select);
 		this.container.appendChild(this.form);
 
 		space = document.createElement("div");
 		this.container.appendChild(space);
 
+		breakHere = document.createElement("br");
+		this.container.appendChild(breakHere);
+		
 		//color swatches
 		this.colordiv = document.createElement("div");
 		this.colordiv.class = "color";
 		this.colordiv.style.overflow = "hidden";
+
+		this.sixthColor = document.createElement("div");
+		this.sixthColor.id = "#236E55";
+		this.sixthColor.style.display = "inline-block";
+		this.sixthColor.style.margin = "3px";
+		this.sixthColor.style['border-radius'] = "22px";
+		this.sixthColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
+		this.sixthColor.style.width = "30px";
+		this.sixthColor.style.height = "30px";
+		this.sixthColor.style.background = "#236E55";
+		this.colordiv.appendChild(this.sixthColor);
+
+		this.seventhColor = document.createElement("div");
+		this.seventhColor.id = "#FF8C40";
+		this.seventhColor.style.display = "inline-block";
+		this.seventhColor.style.margin = "3px";
+		this.seventhColor.style['border-radius'] = "22px";
+		this.seventhColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
+		this.seventhColor.style.width = "30px";
+		this.seventhColor.style.height = "30px";
+		this.seventhColor.style.background = "#FF8C40";
+		this.colordiv.appendChild(this.seventhColor);
+
+		
+		breakHere = document.createElement("br");
+		this.colordiv.appendChild(breakHere);
 
 		this.firstColor = document.createElement("div");
 		this.firstColor.id = "#000046";
@@ -183,6 +217,9 @@ function menuChanged() {
 	else if (menu.select.value == "feather"){
 		menu.brush = "feather";
 	}
+	else if (menu.select.value == "buzz"){
+		menu.brush = "buzz";
+	}
 	else{
 		console.log("Error in menuChanged");
 	}
@@ -192,6 +229,10 @@ function menuChanged() {
 // function that clears canvas --need to optimize so it also clears the buffer
 function clearCanvas(){
 	canvas.width = canvas.width;
+}
+
+function undo(){
+	pencil.all_segments.pop();
 }
 
 // two functions to show/hide menu according to mouse placement
@@ -214,7 +255,8 @@ menu.secondColor.addEventListener('click', colorSwatch, false);
 menu.thirdColor.addEventListener('click', colorSwatch, false);
 menu.fourthColor.addEventListener('click', colorSwatch, false);
 menu.fifthColor.addEventListener('click', colorSwatch, false);
-
-
+menu.sixthColor.addEventListener('click', colorSwatch, false);
+menu.seventhColor.addEventListener('click', colorSwatch, false);
 
 menu.clearImage.addEventListener('click', clearCanvas, false);
+menu.undo.addEventListener('click', undo, false);

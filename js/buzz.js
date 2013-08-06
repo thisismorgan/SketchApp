@@ -1,16 +1,16 @@
 // an instance of the penTool class -- draws lines between points in the path
-function pencil(){
+function buzz(){
 	penTool.call(this);
 }
 
-pencil.prototype = new penTool();
-pencil.prototype.constructor = pencil;
+buzz.prototype = new penTool();
+buzz.prototype.constructor = buzz;
 
 
 // draw function helps smooth lines drawn using splines by curving to midpoints between subsequent sample points
-pencil.prototype.draw = function(pair, current_segment, all_segments, context)
+buzz.prototype.draw = function(pair, current_segment, all_segments, context)
 {
-	context.lineWidth = 2;
+	context.lineWidth = 6;
 	context.lineCap = "round";
 	context.lineJoin = "round";
 	context.strokeStyle = menu.swatch;
@@ -25,11 +25,12 @@ pencil.prototype.draw = function(pair, current_segment, all_segments, context)
 		var yc = (current_segment[i].y + current_segment[i+1].y) / 2;
 		context.quadraticCurveTo(current_segment[i].x,current_segment[i].y, xc, yc);
 		context.stroke();
+		context.beginPath();
 	}
 	all_segments.push(current_segment);
 	current_segment = [];
 	return current_segment;
 }
 
-pencil = new pencil();
+buzz = new buzz();
 
