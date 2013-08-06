@@ -226,19 +226,27 @@ function menuChanged() {
 	return menu.brush;
 }
 
-// function that clears canvas --need to optimize so it also clears the buffer
+// function that clears canvas
 function clearCanvas(){
 	canvas.width = canvas.width;
 }
 
+// function doesn't work yet!
 function undo(){
 	pencil.all_segments.pop();
+}
+
+// function that saves the image by opening img in a new window
+function saveImage(){
+	var img = surface.canvas.toDataURL('image/png');
+	window.open(img, '_blank');
 }
 
 // two functions to show/hide menu according to mouse placement
 function mouseLeave(){
 	menu.container.style.left = "-180px";
 }
+
 
 function mouseHover(){
 	menu.container.style.left = "0px";
@@ -260,3 +268,4 @@ menu.seventhColor.addEventListener('click', colorSwatch, false);
 
 menu.clearImage.addEventListener('click', clearCanvas, false);
 menu.undo.addEventListener('click', undo, false);
+menu.save.addEventListener('click', saveImage, false);
