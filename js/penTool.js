@@ -98,7 +98,19 @@ penTool.prototype.handleEvent = function(event){
 			}
 			else if (current_tool == "buzz"){
 				buzz.draw(last, this.current_segment, this.all_segments, surface.context)
-
+			}
+			else if (current_tool == "fancy"){
+				fancy.draw(last, this.current_segment, this.all_segments, surface.context)
+			}
+			else if (current_tool == "circles"){
+				circles.draw(last, this.current_segment, this.all_segments, surface.context)
+			}
+			else if (current_tool == "mirror pixel"){
+				mirrorPixel.draw(last, this.current_segment, this.all_segments, surface.context)
+			}
+			else if (current_tool == "test"){
+				test.draw(last, this.current_segment, this.all_segments, surface.context)
+				test.draw2(last, this.current_segment, this.all_segments, surface.context)
 			}
 			else{
 				console.log(menu.brush);

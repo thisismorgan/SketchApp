@@ -10,7 +10,7 @@ pencil.prototype.constructor = pencil;
 // draw function helps smooth lines drawn using splines by curving to midpoints between subsequent sample points
 pencil.prototype.draw = function(pair, current_segment, all_segments, context)
 {
-	context.lineWidth = 2;
+	context.lineWidth = 1;
 	context.lineCap = "round";
 	context.lineJoin = "round";
 	context.strokeStyle = menu.swatch;

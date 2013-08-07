@@ -12,7 +12,7 @@ pixel.prototype.draw = function(pair, current_segment, all_segments, context)
 	for(i=0; i<current_segment.length; i++){
 		context.fillStyle = menu.swatch;
 		context.fillRect(current_segment[i].x, current_segment[i].y, 2, 2);
-		}
+	}
 
 	all_segments.push(current_segment);
 	current_segment = [];

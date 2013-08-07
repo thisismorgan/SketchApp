@@ -66,6 +66,26 @@ Menu.prototype =
 		this.option.innerHTML = "buzz";
 		this.select.appendChild(this.option);
 
+		this.option = document.createElement("option");
+		this.option.value= "fancy";
+		this.option.innerHTML = "fancy";
+		this.select.appendChild(this.option);
+
+		this.option = document.createElement("option");
+		this.option.value= "circles";
+		this.option.innerHTML = "circles";
+		this.select.appendChild(this.option);
+
+		this.option = document.createElement("option");
+		this.option.value= "mirror pixel";
+		this.option.innerHTML = "mirror pixel";
+		this.select.appendChild(this.option);
+
+		this.option = document.createElement("option");
+		this.option.value= "test";
+		this.option.innerHTML = "test";
+		this.select.appendChild(this.option);
+
 		this.form.appendChild(this.select);
 		this.container.appendChild(this.form);
 
@@ -219,6 +239,18 @@ function menuChanged() {
 	}
 	else if (menu.select.value == "buzz"){
 		menu.brush = "buzz";
+	}
+	else if (menu.select.value == "fancy"){
+		menu.brush = "fancy";
+	}
+	else if (menu.select.value == "circles"){
+		menu.brush = "circles";
+	}
+	else if (menu.select.value == "mirror pixel"){
+		menu.brush = "mirror pixel";
+	}
+	else if (menu.select.value == "test"){
+		menu.brush = "test";
 	}
 	else{
 		console.log("Error in menuChanged");
