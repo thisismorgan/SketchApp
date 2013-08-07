@@ -17,6 +17,7 @@ feather.prototype.draw = function(current_segment, all_segments, context)
 	context.globalCompositeOperation = 'destination-atop';
 	
 	for(i=0; i<current_segment.length; i++){
+		context.lineWidth = 1;
 		if (i == 0) {
 			var start_point = current_segment[0];
 			context.beginPath();
@@ -35,6 +36,7 @@ feather.prototype.draw = function(current_segment, all_segments, context)
 			if (d < 5000)
 			{
 				context.strokeStyle = menu.swatch;
+				context.lineWidth = 0.1;
 				context.beginPath();
 				context.moveTo(current_segment[i-1].x + (dx * 0.2), current_segment[i-1].y + (dy * 0.2));
 				context.lineTo(current_segment[i].x - (dx * 5), current_segment[i].y - (dy * 5));

@@ -1,14 +1,14 @@
 // an instance of the penTool class -- draws lines between points in the path
-function test(){
+function mirrorPencil(){
 	penTool.call(this);
 }
 
-test.prototype = new penTool();
-test.prototype.constructor = test;
+mirrorPencil.prototype = new penTool();
+mirrorPencil.prototype.constructor = mirrorPencil;
 
 
 // draw function helps smooth lines drawn using splines by curving to midpoints between subsequent sample points
-test.prototype.draw = function(current_segment, all_segments, context)
+mirrorPencil.prototype.draw = function(current_segment, all_segments, context)
 {
 	context.lineWidth = 0.5;
 	context.lineCap = "round";
@@ -30,7 +30,7 @@ test.prototype.draw = function(current_segment, all_segments, context)
 	return current_segment;
 }
 
-test.prototype.draw2 = function(current_segment, all_segments, context)
+mirrorPencil.prototype.draw2 = function(current_segment, all_segments, context)
 {
 	context.lineWidth = 0.5;
 	context.lineCap = "round";
@@ -68,4 +68,4 @@ test.prototype.draw2 = function(current_segment, all_segments, context)
 	return current_segment;
 }
 
-test = new test();
+mirrorPencil = new mirrorPencil();

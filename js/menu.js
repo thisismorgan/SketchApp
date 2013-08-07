@@ -45,6 +45,12 @@ Menu.prototype =
 		// creates a drop-down menu for brushes
 		this.form = document.createElement("form");
 		this.select = document.createElement("select");
+		this.select.style.cursor = "pointer";
+		this.select.style.width = "150px";
+		this.select.style.height = "20px";
+		this.select.style.margin = "6px";
+		this.select.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 8.0)";
+
 		
 		this.option = document.createElement("option");
 		this.option.value = "pencil";
@@ -82,6 +88,16 @@ Menu.prototype =
 		this.select.appendChild(this.option);
 
 		this.option = document.createElement("option");
+		this.option.value= "mirror pencil";
+		this.option.innerHTML = "mirror pencil";
+		this.select.appendChild(this.option);
+
+		this.option = document.createElement("option");
+		this.option.value= "geometric";
+		this.option.innerHTML = "geometric";
+		this.select.appendChild(this.option);
+
+		this.option = document.createElement("option");
 		this.option.value= "test";
 		this.option.innerHTML = "test";
 		this.select.appendChild(this.option);
@@ -102,6 +118,7 @@ Menu.prototype =
 
 		this.sixthColor = document.createElement("div");
 		this.sixthColor.style.display = "inline-block";
+		this.sixthColor.style.cursor = "pointer";
 		this.sixthColor.style.margin = "3px";
 		this.sixthColor.style['border-radius'] = "22px";
 		this.sixthColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
@@ -112,6 +129,7 @@ Menu.prototype =
 
 		this.seventhColor = document.createElement("div");
 		this.seventhColor.style.display = "inline-block";
+		this.seventhColor.style.cursor = "pointer";
 		this.seventhColor.style.margin = "3px";
 		this.seventhColor.style['border-radius'] = "22px";
 		this.seventhColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
@@ -126,6 +144,7 @@ Menu.prototype =
 
 		this.firstColor = document.createElement("div");
 		this.firstColor.style.display = "inline-block";
+		this.firstColor.style.cursor = "pointer";
 		this.firstColor.style.margin = "3px";
 		this.firstColor.style['border-radius'] = "22px";
 		this.firstColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
@@ -136,6 +155,7 @@ Menu.prototype =
 
 		this.secondColor = document.createElement("div");
 		this.secondColor.style.display = "inline-block";
+		this.secondColor.style.cursor = "pointer";
 		this.secondColor.style.margin = "3px";
 		this.secondColor.style['border-radius'] = "22px";		
 		this.secondColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
@@ -146,6 +166,7 @@ Menu.prototype =
 
 		this.thirdColor = document.createElement("div");
 		this.thirdColor.style.display = "inline-block";
+		this.thirdColor.style.cursor = "pointer";
 		this.thirdColor.style.margin = "3px";
 		this.thirdColor.style['border-radius'] = "22px";		
 		this.thirdColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
@@ -159,6 +180,7 @@ Menu.prototype =
 
 		this.fourthColor = document.createElement("div");
 		this.fourthColor.style.display = "inline-block";
+		this.fourthColor.style.cursor = "pointer";
 		this.fourthColor.style.margin = "3px";
 		this.fourthColor.style['border-radius'] = "22px";		
 		this.fourthColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
@@ -169,6 +191,7 @@ Menu.prototype =
 
 		this.fifthColor = document.createElement("div");
 		this.fifthColor.style.display = "inline-block";
+		this.fifthColor.style.cursor = "pointer";
 		this.fifthColor.style.margin = "3px";
 		this.fifthColor.style['border-radius'] = "22px";		
 		this.fifthColor.style['-webkit-box-shadow'] = "inset 0px 1px 5px rgba(0, 0, 0, 8.0)";
@@ -189,6 +212,7 @@ Menu.prototype =
 		// button for saving images
 		this.save = document.createElement("button");
 		this.save.innerHTML = "Save Your Sketch";
+		this.save.style.cursor = "pointer";
 		this.save.style.width = "150px";
 		this.save.style.height = "20px";
 		this.save.style.margin = "6px";
@@ -201,6 +225,7 @@ Menu.prototype =
 		// undo button
 		this.undo = document.createElement("button");
 		this.undo.innerHTML = "Undo That Move";
+		this.undo.style.cursor = "pointer";
 		this.undo.style.width = "150px";
 		this.undo.style.height = "20px";
 		this.undo.style.margin = "6px";
@@ -213,6 +238,7 @@ Menu.prototype =
 		// clear button
 		this.clearImage = document.createElement("button");
 		this.clearImage.innerHTML = "Start Over?";
+		this.clearImage.style.cursor = "pointer";
 		this.clearImage.style.width = "150px";
 		this.clearImage.style.height = "20px";
 		this.clearImage.style.margin = "6px";
@@ -253,8 +279,14 @@ function menuChanged() {
 	else if (menu.select.value == "mirror pixel"){
 		menu.brush = "mirror pixel";
 	}
+	else if (menu.select.value == "geometric"){
+		menu.brush = "geometric";
+	}
 	else if (menu.select.value == "test"){
 		menu.brush = "test";
+	}
+	else if (menu.select.value == "mirror pencil"){
+		menu.brush = "mirror pencil";
 	}
 	else{
 		console.log("Error in menuChanged");
@@ -269,7 +301,7 @@ function clearCanvas(){
 
 // function doesn't work yet!
 function undo(){
-	pencil.all_segments.pop();
+	penTool.all_segments.pop();
 }
 
 // function that saves the image by opening img in a new window

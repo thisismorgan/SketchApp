@@ -1,20 +1,22 @@
 // an instance of the penTool class -- draws lines between points in the path
-function test(){
+function geometric(){
 	penTool.call(this);
+	this.count = null;
 }
 
-test.prototype = new penTool();
-test.prototype.constructor = test;
+geometric.prototype = new penTool();
+geometric.prototype.constructor = geometric;
 
 
 // draw function helps smooth lines drawn using splines by curving to midpoints between subsequent sample points
-test.prototype.draw = function(current_segment, all_segments, context)
+geometric.prototype.draw = function(current_segment, all_segments, context)
 {
 	context.lineWidth = 0.5;
 	context.lineCap = "round";
 	context.strokeStyle = menu.swatch;
 	context.globalAlpha = 0.5;
 	context.globalCompositeOperation = 'destination-atop';
+	this.count = 0
 	for(i=0; i<current_segment.length - 2; i++){
 		if (i == 0) {
 			context.beginPath();
@@ -24,15 +26,30 @@ test.prototype.draw = function(current_segment, all_segments, context)
 		var yc = (current_segment[i].y + current_segment[i+1].y) / 2;
 		context.quadraticCurveTo(current_segment[i].x,current_segment[i].y, xc, yc);
 		context.stroke();
+		
+		dx = current_segment[i].x - current_segment[this.count].x;
+		dy = current_segment[i].y - current_segment[this.count].y;
+		d = dx * dx + dy * dy;
+
+		if (d<5000 && Math.random() > 0.9)
+		{
+			context.beginPath();
+			context.moveTo(current_segment[this.count].x, current_segment[this.count].y);
+			context.lineTo(current_segment[i].x, current_segment[i].y);
+			context.stroke();
+		}
+		current_segment[i].y = current_segment[i+1].y;
+
 	}
 
+	this.count ++;
 
 	return current_segment;
 }
 
-test.prototype.draw2 = function(current_segment, all_segments, context)
+geometric.prototype.draw2 = function(current_segment, all_segments, context)
 {
-	context.lineWidth = 0.5;
+	context.lineWidth = 1;
 	context.lineCap = "round";
 	// context.lineJoin = "round";
 	context.strokeStyle = menu.swatch;
@@ -68,4 +85,4 @@ test.prototype.draw2 = function(current_segment, all_segments, context)
 	return current_segment;
 }
 
-test = new test();
+geometric = new geometric();

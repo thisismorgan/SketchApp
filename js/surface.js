@@ -10,6 +10,7 @@ Surface.prototype =
 	init: function()
 	{
 	this.canvas = document.getElementById("art");
+	this.canvas.style.cursor = "crosshair";
 	this.context = this.canvas.getContext("2d");
 	
 	//to save this image you need to give it a white background (otherwise the default background is transparent..)

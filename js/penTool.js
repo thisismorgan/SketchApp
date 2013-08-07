@@ -44,22 +44,6 @@ penTool.prototype.handleEvent = function(event){
 				x: x,
 				y: y
 			};
-			// all_strokes = [
-			//   {
-			//   	tool: pencil,
-			//   	coord_list: [{x:1, y:2}, {x:2, y:3}, ...]
-			//   }, 
-			//   {
-			//   	tool: pixel,
-			//   	coord_list: [{x:4, y:3}, ...]
-			//   }, 
-			//   ...
-			//   ]
-			// for (var i = 0; i < all_strokes.length; i++) {
-			// 	current_stroke = all_strokes[i];
-			// 	current_stroke.tool... current_stroke.coord_list
-			// }
-
 			this.current_segment.push(start)
 			if (menuChanged() == "fancy")
 			{
@@ -118,6 +102,14 @@ function selectTool(current_segment, all_segments, context)
 	}
 	else if (menuChanged() == "mirror pixel"){
 		mirrorPixel.draw(current_segment, all_segments, context)
+	}
+	else if (menuChanged() == "geometric"){
+		geometric.draw(current_segment, all_segments, context)
+		geometric.draw2(current_segment, all_segments, context)
+	}
+	else if (menuChanged() == "mirror pencil"){
+		mirrorPencil.draw(current_segment, all_segments, context)
+		mirrorPencil.draw2(current_segment, all_segments, context)
 	}
 	else if (menuChanged() == "test"){
 		test.draw(current_segment, all_segments, context)
