@@ -8,13 +8,12 @@ pencil.prototype.constructor = pencil;
 
 
 // draw function helps smooth lines drawn using splines by curving to midpoints between subsequent sample points
-pencil.prototype.draw = function(pair, current_segment, all_segments, context)
+pencil.prototype.draw = function(current_segment, all_segments, context)
 {
 	context.lineWidth = 1;
 	context.lineCap = "round";
 	context.lineJoin = "round";
 	context.strokeStyle = menu.swatch;
-	current_segment.push(pair);
 	for(i=0; i<current_segment.length - 2; i++){
 		if (i == 0) {
 			var start_point = current_segment[0];
@@ -30,6 +29,7 @@ pencil.prototype.draw = function(pair, current_segment, all_segments, context)
 	current_segment = [];
 	return current_segment;
 }
+
 
 pencil = new pencil();
 

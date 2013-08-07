@@ -6,9 +6,8 @@ function fancy(){
 fancy.prototype = new penTool();
 fancy.prototype.constructor = fancy;
 
-fancy.prototype.draw = function(pair, current_segment, all_segments, context)
+fancy.prototype.draw = function(current_segment, all_segments, context)
 {
-	current_segment.push(pair);
 	for(i=0; i<current_segment.length; i++){
 		context.strokeStyle = menu.swatch;
 		var radius = Math.floor(50*Math.random());

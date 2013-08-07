@@ -60,7 +60,12 @@ penTool.prototype.handleEvent = function(event){
 			// 	current_stroke = all_strokes[i];
 			// 	current_stroke.tool... current_stroke.coord_list
 			// }
+
 			this.current_segment.push(start)
+			if (menuChanged() == "fancy")
+			{
+				fancy.draw(this.current_segment, this.all_segments, surface.context)
+			}
 			this.line_drawn = true;
 			break;
 		case 'mousemove':
@@ -73,7 +78,7 @@ penTool.prototype.handleEvent = function(event){
 				y: y
 			};
 			this.current_segment.push(next)
-			this.increment = this.increment + 1
+			selectTool(this.current_segment, this.all_segments, surface.context);
 			}
 			break;
 		case 'mouseup':
@@ -84,40 +89,42 @@ penTool.prototype.handleEvent = function(event){
 				x: x,
 				y: y
 			};
-			current_tool = selectTool();
-			
-			// selects appropriate draw function for the tool selected
-			if (current_tool == "pixel"){
-				pixel.draw(last, this.current_segment, this.all_segments, surface.context);
-			}
-			else if (current_tool == "pencil"){
-				pencil.draw(last, this.current_segment, this.all_segments, surface.context, false);
-			}
-			else if (current_tool == "feather") {
-				feather.draw(last, this.current_segment, this.all_segments, surface.context)
-			}
-			else if (current_tool == "buzz"){
-				buzz.draw(last, this.current_segment, this.all_segments, surface.context)
-			}
-			else if (current_tool == "fancy"){
-				fancy.draw(last, this.current_segment, this.all_segments, surface.context)
-			}
-			else if (current_tool == "circles"){
-				circles.draw(last, this.current_segment, this.all_segments, surface.context)
-			}
-			else if (current_tool == "mirror pixel"){
-				mirrorPixel.draw(last, this.current_segment, this.all_segments, surface.context)
-			}
-			else if (current_tool == "test"){
-				test.draw(last, this.current_segment, this.all_segments, surface.context)
-				test.draw2(last, this.current_segment, this.all_segments, surface.context)
-			}
-			else{
-				console.log(menu.brush);
-			}
-
 			this.current_segment = [];
 			this.line_drawn = false
 			break;
+	}
+}
+
+
+// selects appropriate draw function for the tool selected
+function selectTool(current_segment, all_segments, context)
+{
+	if (menuChanged() == "pixel"){
+		pixel.draw(current_segment, all_segments, context);
+	}
+	else if (menuChanged() == "pencil"){
+		pencil.draw(current_segment, all_segments, context, false);
+	}
+	else if (menuChanged() == "feather") {
+		feather.draw(current_segment, all_segments, context)
+	}
+	else if (menuChanged() == "buzz"){
+		buzz.draw(current_segment, all_segments, context)
+	}
+	else if (menuChanged() == "fancy"){
+		// fancy.draw(current_segment, all_segments, context)
+	}
+	else if (menuChanged() == "circles"){
+		circles.draw(current_segment, all_segments, context)
+	}
+	else if (menuChanged() == "mirror pixel"){
+		mirrorPixel.draw(current_segment, all_segments, context)
+	}
+	else if (menuChanged() == "test"){
+		test.draw(current_segment, all_segments, context)
+		test.draw2(current_segment, all_segments, context)
+	}
+	else{
+		console.log(menu.brush);
 	}
 }

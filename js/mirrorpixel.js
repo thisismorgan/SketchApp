@@ -6,10 +6,9 @@ function mirrorPixel(){
 mirrorPixel.prototype = new penTool();
 mirrorPixel.prototype.constructor = mirrorPixel;
 
-mirrorPixel.prototype.draw = function(pair, current_segment, all_segments, context)
+mirrorPixel.prototype.draw = function(current_segment, all_segments, context)
 {
 	var num = 2;
-	current_segment.push(pair);
 	for(i=0; i<current_segment.length; i++){
 		context.fillStyle = menu.swatch;
 		if (current_segment[i].x < surface.canvas.width / 2)

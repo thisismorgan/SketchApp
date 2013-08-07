@@ -101,7 +101,6 @@ Menu.prototype =
 		this.colordiv.style.overflow = "hidden";
 
 		this.sixthColor = document.createElement("div");
-		this.sixthColor.id = "#236E55";
 		this.sixthColor.style.display = "inline-block";
 		this.sixthColor.style.margin = "3px";
 		this.sixthColor.style['border-radius'] = "22px";
@@ -112,7 +111,6 @@ Menu.prototype =
 		this.colordiv.appendChild(this.sixthColor);
 
 		this.seventhColor = document.createElement("div");
-		this.seventhColor.id = "#FF8C40";
 		this.seventhColor.style.display = "inline-block";
 		this.seventhColor.style.margin = "3px";
 		this.seventhColor.style['border-radius'] = "22px";
@@ -127,7 +125,6 @@ Menu.prototype =
 		this.colordiv.appendChild(breakHere);
 
 		this.firstColor = document.createElement("div");
-		this.firstColor.id = "#000046";
 		this.firstColor.style.display = "inline-block";
 		this.firstColor.style.margin = "3px";
 		this.firstColor.style['border-radius'] = "22px";
@@ -138,7 +135,6 @@ Menu.prototype =
 		this.colordiv.appendChild(this.firstColor);
 
 		this.secondColor = document.createElement("div");
-		this.secondColor.id = "#FFF836";
 		this.secondColor.style.display = "inline-block";
 		this.secondColor.style.margin = "3px";
 		this.secondColor.style['border-radius'] = "22px";		
@@ -149,7 +145,6 @@ Menu.prototype =
 		this.colordiv.appendChild(this.secondColor);
 
 		this.thirdColor = document.createElement("div");
-		this.thirdColor.id = "#AAFA9F";
 		this.thirdColor.style.display = "inline-block";
 		this.thirdColor.style.margin = "3px";
 		this.thirdColor.style['border-radius'] = "22px";		
@@ -163,7 +158,6 @@ Menu.prototype =
 		this.colordiv.appendChild(breakHere);
 
 		this.fourthColor = document.createElement("div");
-		this.fourthColor.id = "#690735";
 		this.fourthColor.style.display = "inline-block";
 		this.fourthColor.style.margin = "3px";
 		this.fourthColor.style['border-radius'] = "22px";		
@@ -174,7 +168,6 @@ Menu.prototype =
 		this.colordiv.appendChild(this.fourthColor);
 
 		this.fifthColor = document.createElement("div");
-		this.fifthColor.id = "#3D4051";
 		this.fifthColor.style.display = "inline-block";
 		this.fifthColor.style.margin = "3px";
 		this.fifthColor.style['border-radius'] = "22px";		
@@ -195,7 +188,11 @@ Menu.prototype =
 
 		// button for saving images
 		this.save = document.createElement("button");
-		this.save.innerHTML = "Save That Drawing";
+		this.save.innerHTML = "Save Your Sketch";
+		this.save.style.width = "150px";
+		this.save.style.height = "20px";
+		this.save.style.margin = "6px";
+		this.save.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 15.0)";
 		this.container.appendChild(this.save);
 
 		space = document.createElement("div");
@@ -204,6 +201,10 @@ Menu.prototype =
 		// undo button
 		this.undo = document.createElement("button");
 		this.undo.innerHTML = "Undo That Move";
+		this.undo.style.width = "150px";
+		this.undo.style.height = "20px";
+		this.undo.style.margin = "6px";
+		this.undo.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 15.0)";
 		this.container.appendChild(this.undo);
 
 		space = document.createElement("div");
@@ -211,7 +212,11 @@ Menu.prototype =
 
 		// clear button
 		this.clearImage = document.createElement("button");
-		this.clearImage.innerHTML = "Clear Your Drawing";
+		this.clearImage.innerHTML = "Start Over?";
+		this.clearImage.style.width = "150px";
+		this.clearImage.style.height = "20px";
+		this.clearImage.style.margin = "6px";
+		this.clearImage.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 15.0)";
 		this.container.appendChild(this.clearImage);
 
 		document.body.appendChild(this.container);
@@ -222,14 +227,13 @@ Menu.prototype =
 
 //color selection function
 function colorSwatch(event){
-	menu.swatch = event.target.id;
+	menu.swatch = event.target.style.background;
 }
 
 // provides functionality to drop-down menu for brush selection
 function menuChanged() {
 	if (menu.select.value == "pencil"){
 		menu.brush = "pencil";
-
 	}
 	else if (menu.select.value == "pixel"){
 		menu.brush = "pixel";

@@ -19,13 +19,5 @@ Surface.prototype =
 
 }
 
-function selectTool(){
-	this.current_tool = menuChanged();
-	return this.current_tool;
-}
-
-
-
 
 surface = new Surface();
-surface.canvas.addEventListener('mouseup', selectTool, false);

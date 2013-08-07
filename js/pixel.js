@@ -6,11 +6,10 @@ function pixel(){
 pixel.prototype = new penTool();
 pixel.prototype.constructor = pixel;
 
-pixel.prototype.draw = function(pair, current_segment, all_segments, context)
+pixel.prototype.draw = function(current_segment, all_segments, context)
 {
-	current_segment.push(pair);
+	context.fillStyle = menu.swatch;
 	for(i=0; i<current_segment.length; i++){
-		context.fillStyle = menu.swatch;
 		context.fillRect(current_segment[i].x, current_segment[i].y, 2, 2);
 	}
 

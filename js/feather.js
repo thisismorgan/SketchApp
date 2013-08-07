@@ -6,11 +6,10 @@ function feather(){
 feather.prototype = new feather();
 feather.prototype.constructor = feather;
 
-feather.prototype.draw = function(pair, current_segment, all_segments, context)
+feather.prototype.draw = function(current_segment, all_segments, context)
 {
 	var dx, dy, d;
 
-	current_segment.push(pair);
 	context.lineWidth = 1;
 	context.lineCap = "round";
 	context.strokeStyle = menu.swatch;

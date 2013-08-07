@@ -6,9 +6,8 @@ function circles(){
 circles.prototype = new penTool();
 circles.prototype.constructor = circles;
 
-circles.prototype.draw = function(pair, current_segment, all_segments, context)
+circles.prototype.draw = function(current_segment, all_segments, context)
 {
-	current_segment.push(pair);
 	for(i=0; i<current_segment.length; i++){
 		context.strokeStyle = menu.swatch;
 		var radius = 50
