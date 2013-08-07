@@ -10,6 +10,8 @@ fancy.prototype.draw = function(current_segment, all_segments, context)
 {
 	for(i=0; i<current_segment.length; i++){
 		context.strokeStyle = menu.swatch;
+		context.globalAlpha = 0.2;
+		context.globalCompositeOperation = 'source-over';
 		var radius = Math.floor(50*Math.random());
 		// var radius = 50
 		context.beginPath();

@@ -11,6 +11,9 @@ mirrorPixel.prototype.draw = function(current_segment, all_segments, context)
 	var num = 2;
 	for(i=0; i<current_segment.length; i++){
 		context.fillStyle = menu.swatch;
+		context.globalAlpha = 0.2;
+		context.globalCompositeOperation = 'source-over';
+
 		if (current_segment[i].x < surface.canvas.width / 2)
 		{
 			context.fillRect(current_segment[i].x, current_segment[i].y, num, num);

@@ -34,7 +34,6 @@ penTool.prototype.draw = function(pair, current_segment, all_segments, context)
 }
 
 
-
 penTool.prototype.handleEvent = function(event){
 	switch(event.type){
 		case 'mousedown':

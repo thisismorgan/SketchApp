@@ -13,6 +13,9 @@ feather.prototype.draw = function(current_segment, all_segments, context)
 	context.lineWidth = 1;
 	context.lineCap = "round";
 	context.strokeStyle = menu.swatch;
+	context.globalAlpha = 0.5;
+	context.globalCompositeOperation = 'destination-atop';
+	
 	for(i=0; i<current_segment.length; i++){
 		if (i == 0) {
 			var start_point = current_segment[0];

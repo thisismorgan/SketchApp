@@ -10,10 +10,13 @@ buzz.prototype.constructor = buzz;
 // draw function helps smooth lines drawn using splines by curving to midpoints between subsequent sample points
 buzz.prototype.draw = function(current_segment, all_segments, context)
 {
-	context.lineWidth = 6;
+	context.lineWidth = 3;
 	context.lineCap = "round";
 	context.lineJoin = "round";
 	context.strokeStyle = menu.swatch;
+	context.globalAlpha = 0.5;
+	context.globalCompositeOperation = 'destination-atop';
+
 	for(i=0; i<current_segment.length - 2; i++){
 		if (i == 0) {
 			var start_point = current_segment[0];

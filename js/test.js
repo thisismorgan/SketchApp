@@ -12,8 +12,11 @@ test.prototype.draw = function(current_segment, all_segments, context)
 {
 	context.lineWidth = 1;
 	context.lineCap = "round";
-	context.lineJoin = "round";
+	// context.lineJoin = "round";
 	context.strokeStyle = menu.swatch;
+	context.globalAlpha = 0.5;
+	context.globalCompositeOperation = 'destination-atop';
+
 	for(i=0; i<current_segment.length - 2; i++){
 		if (i == 0) {
 			context.beginPath();
@@ -32,7 +35,7 @@ test.prototype.draw2 = function(current_segment, all_segments, context)
 {
 	context.lineWidth = 1;
 	context.lineCap = "round";
-	context.lineJoin = "round";
+	// context.lineJoin = "round";
 	context.strokeStyle = menu.swatch;
 	for(i=0; i<current_segment.length - 2; i++){
 		if (current_segment[i].x < surface.canvas.width / 2)
@@ -54,7 +57,7 @@ test.prototype.draw2 = function(current_segment, all_segments, context)
 			context.beginPath();
 			context.moveTo(surface.canvas.width - current_segment[i].x, current_segment[i].y);
 			}
-		var xc = ((surface.canvas.width - current_segment[i].x) + (surface.canvas.width - current_segment[i].x)) / 2;
+		var xc = ((surface.canvas.width - current_segment[i].x) + (surface.canvas.width - current_segment[i+1].x)) / 2;
 		var yc = (current_segment[i].y + current_segment[i+1].y) / 2;
 		context.quadraticCurveTo((surface.canvas.width - current_segment[i].x),current_segment[i].y, xc, yc);
 		context.stroke();
