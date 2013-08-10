@@ -27,17 +27,17 @@ class User(Base):
 	password_hash = Column(String(64), nullable=True)
 	salt = Column(String(64), nullable=True)
 
-	# def is_authenticated(self):
-	# 	return True
+	def is_authenticated(self):
+		return True
 
-	# def is_active(self):
-	# 	return True
+	def is_active(self):
+		return True
 
-	# def is_anonymous(self):
-	# 	return False
+	def is_anonymous(self):
+		return False
 
-	# def get_id(self):
-	# 	return Unicode(self.id)
+	def get_id(self):
+		return unicode(self.id)
 
 class Image(Base):
 	__tablename__= "images"

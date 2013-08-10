@@ -11,7 +11,8 @@
 			font-size: 20px;
 			-webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.8);
 		}
-		/*#curtain{
+		#curtain{
+			text-align: center;
 			display:block;
 			position:fixed;
 			top:0;
@@ -37,7 +38,14 @@
 			background-color: white;
 			text-align: center;
 			-webkit-box-shadow: 0px 1px 50px rgba(255, 255, 255, 0.8);
-		}*/
+		}
+		.des{
+			text-align: right;
+			font-size: 14px;
+		}
+		table{
+			margin:auto;
+		}
 		</style>
 
 	</head>
@@ -50,12 +58,47 @@
 			canvas.width = window.innerWidth;
 			canvas.height = window.innerHeight;
 		</script>
-		<!-- <div id="curtain">
+		
+<!-- 		<p>
+			{% for messages in get_flashed_messages() %}
+				<div> {{ message }} </div>
+			{% endfor %}
+		</p> -->
+
+		{% if current_user.is_anonymous() %}
+		<div id="curtain">
 			<div id="login"> 
 				<h2>hipster draw</h2>
 				<h4> <em>unleash your inner artist</em></h2>
+				<p>
+					<form action = '/' method="POST" name="login">
+						{{ form.hidden_tag() }}
+						{% from "_formhelper.html" import render_field %}
+						
+						Please Login
+						<br></br>
+						<table>
+							<tr>
+								<td class="des"> {{form.email.description}}: </td>
+						 		<td> {{render_field(form.email)}} </td>
+						 		<td></td>
+						 		<td></td>
+						 	</tr>
+						 	<tr>
+						 		<td class="des"> {{form.password.description}}: </td>
+						 		<td> {{render_field(form.password)}} </td>
+						 		<td></td>
+						 		<td class="des"><input type = "submit" value = "Log In"/></td>
+						 	</tr>
+						 </table>
+						
+					
+					</form>
+				</p>
 			</div>
-		</div> -->
+		</div>
+		{% endif %}
+
 
 		<script type="text/javascript" src="static/js/surface.js"></script>
 		<script type="text/javascript" src="static/js/buffer.js"></script>

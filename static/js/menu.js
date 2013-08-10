@@ -246,6 +246,20 @@ Menu.prototype =
 		this.clearImage.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 15.0)";
 		this.container.appendChild(this.clearImage);
 
+		space = document.createElement("div");
+		this.container.appendChild(space);
+
+		this.logout = document.createElement("a");
+		var linkText = document.createTextNode("logout");
+		this.logout.appendChild(linkText);
+		this.logout.title = "logout";
+		this.logout.href = "/logout";
+		this.logout.style.color = "white";
+		this.logout.style['font-size'] = '10px';
+		this.logout.style.position = "float";
+		this.logout.style.bottom = "60px";
+		this.container.appendChild(this.logout);
+
 		document.body.appendChild(this.container);
 	}
 
