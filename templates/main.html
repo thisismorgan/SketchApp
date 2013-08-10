@@ -25,6 +25,7 @@
 			opacity:0.7;
 			z-index: 1;
 		}
+
 		#login{
 			position: absolute;
 			width:500px;
@@ -37,7 +38,23 @@
 			right:0;
 			background-color: white;
 			text-align: center;
-			-webkit-box-shadow: 0px 1px 50px rgba(255, 255, 255, 0.8);
+			-webkit-box-shadow: 0px 1px 25px rgba(255, 255, 255, 0.8);
+			z-index:4;
+		}
+		#new{
+			position: absolute;
+			width:500px;
+			height: 400px;
+			top: 100px;
+			margin:auto;
+			top:0;
+			bottom: 0;
+			left:0;
+			right:0;
+			background-color: white;
+			text-align: center;
+			-webkit-box-shadow: 0px 1px 25px rgba(255, 255, 255, 0.8);
+			z-index:2;
 		}
 		.des{
 			text-align: right;
@@ -46,12 +63,51 @@
 		table{
 			margin:auto;
 		}
+		#create{
+			height:20px;
+			width:200px;
+			background-color: red;
+			color:white;
+			text-align: center;
+			margin:auto;
+			cursor: pointer;
+			-webkit-box-shadow: 0px 1px 5px rgba(255, 0, 0, 0.8)
+		}
+		#create2{
+			height:20px;
+			width:200px;
+			background-color: red;
+			color:white;
+			text-align: center;
+			margin:auto;
+			-webkit-box-shadow: 0px 1px 5px rgba(255, 0, 0, 0.8)
+		}
+		a:link{
+			color:white;
+			text-decoration: none;
+		}
+		a:visited{
+			color:white;
+			text-decoration: none;
+		}
+		#back{
+			text-align: right;
+			margin-right: 6px;
+			cursor:pointer;
+		}
 		</style>
 
 	</head>
 
 	<body>
+		<p id="message"> {{ message }} </p>
 		<script type="text/javascript" src="static/js/menu.js"></script>
+		<script> 
+			var message = document.getElementById("message");
+			message.style.position = "float";
+			message.style['font-size'] = "12px";
+			menu.container.appendChild(message);
+		</script>
 		<canvas id = "art"></canvas>
 		<script>
 			canvas = document.getElementById("art");
@@ -59,12 +115,7 @@
 			canvas.height = window.innerHeight;
 		</script>
 		
-<!-- 		<p>
-			{% for messages in get_flashed_messages() %}
-				<div> {{ message }} </div>
-			{% endfor %}
-		</p> -->
-
+		<!-- Everything in this block is for the login element that hovers above the app -->
 		{% if current_user.is_anonymous() %}
 		<div id="curtain">
 			<div id="login"> 
@@ -91,13 +142,44 @@
 						 		<td class="des"><input type = "submit" value = "Log In"/></td>
 						 	</tr>
 						 </table>
-						
-					
+
 					</form>
 				</p>
+				<br></br>
+				<p>
+					Are you new to hipster draw?
+				</p>
+				<p>
+					<script>
+						function changeZIndex(i, id){
+							document.getElementById(id).style.zIndex = i;
+						}
+					</script>
+					<div id ="create" onclick = 'changeZIndex(6, "new")' cursor = "pointer">create account</div>
+				</p>
+			</div>
+			<div id="new">
+				<div id ="create2">create account</div>
+				<br></br>
+				<h2> If you provide a nickname, email, and password, we give you hours of entertainment.</h2>
+				<br></br>
+				<form action= '/create' method="POST" name="create">
+					<label for="nickname"> pick a good nickname.. it'll stick</label>
+					<input type="text" name="nickname" placeholder="nickname" required/>
+					<br></br>
+					<label for="email"> email</label>
+					<input type="text" name="email" placeholder="email here" required/>
+					<br></br>
+					<label for="password"> super secret password </label>
+					<input type="password" name="password" placeholder="password" required/>
+					<br></br>
+					<input type="submit" value="create that shit"/>
+				</form>
+				<p id= "back" onclick = 'changeZIndex(2, "new")'> back </p>
 			</div>
 		</div>
 		{% endif %}
+
 
 
 		<script type="text/javascript" src="static/js/surface.js"></script>

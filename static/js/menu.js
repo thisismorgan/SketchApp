@@ -20,6 +20,7 @@ Menu.prototype =
 
 	init: function()
 	{
+		// this.container = document.getElementById("menu");
 		this.container = document.createElement("div");
 		this.container.className = "hipster menu";
 		this.container.style.background = "#2E2E2E";
@@ -259,6 +260,9 @@ Menu.prototype =
 		this.logout.style.position = "float";
 		this.logout.style.bottom = "60px";
 		this.container.appendChild(this.logout);
+
+		breakHere = document.createElement("br");
+		this.container.appendChild(breakHere);
 
 		document.body.appendChild(this.container);
 	}
