@@ -83,13 +83,12 @@ def create():
 		return render_template("main.html", message=message)
 
 # this is the route you will send image data in order to add it to the database
-@app.route('/add_gallery')
+@app.route('/add_gallery', methods=['POST', 'GET'])
 @login_required
 def add_gallery():
 	message = ""
-	print "-" * 30
-	print "You've travelled to the add_gallery router"
-	print "-" * 30
+	image = request.form.get("image");
+	
 	# return a string here (do not render_template or redirect-- there's no need to)
 	return render_template("main.html", message=message)
 
