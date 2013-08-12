@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<style>
+			*{
+			font-family: "Arial", sans-serif;
+			}
+		.hipster{
+			color: white;
+			text-align: center;
+			font-family: arial, sans-serif;
+			font-size: 16px;
+			-webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.8);
+			background: #2E2E2E;
+			position:absolute;
+			height:100%;
+			width:200px;
+			left:0px;
+			}
+		.gallery{
+			text-align: center;
+			display:block;
+			position:fixed;
+			height:100%;
+			width: 1400px;
+			left: 200px;
+			background-color:black;
+			opacity:0.7;
+		}
+
+		a:link{
+			color:white;
+			text-decoration: none;
+			font-size: 10px;
+		}
+		a:visited{
+			color:white;
+			text-decoration: none;
+			font-size: 10px;
+		}
+		#logout{
+			position: absolute;
+			text-align: center;
+			left: 86px;
+			bottom: 65px;
+		}
+		#back{
+			position: absolute;
+			text-align: center;
+			left: 90px;
+			bottom: 50px;
+		}
+		</style>
+	</head>
+	<body>
+		<div class = "hipster">
+			<img src = "js/../../static/hipster_draw.png"/>
+			<p> All of your beautiful </p>
+			<p> creations in one place </p>
+			<div id = "logout"><a href = "/logout"> logout </a></div>
+			<div id = "back"><a href = "/"> back </a></div>
+		</div>
+		<div class = "gallery">
+			<!-- special code to select images here -->
+		</div>
+	</body>
+</html>
+

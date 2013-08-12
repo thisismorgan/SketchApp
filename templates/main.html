@@ -58,7 +58,7 @@
 		}
 		.des{
 			text-align: right;
-			font-size: 14px;
+			font-size: 12px;
 		}
 		table{
 			margin:auto;
@@ -95,6 +95,10 @@
 			margin-right: 6px;
 			cursor:pointer;
 		}
+		#exists{
+			color:red;
+			font-size: 10px;
+		}
 		</style>
 
 	</head>
@@ -108,6 +112,7 @@
 			message.style['font-size'] = "12px";
 			menu.container.appendChild(message);
 		</script>
+
 		<canvas id = "art"></canvas>
 		<script>
 			canvas = document.getElementById("art");
@@ -119,15 +124,14 @@
 		{% if current_user.is_anonymous() %}
 		<div id="curtain">
 			<div id="login"> 
-				<h2>hipster draw</h2>
-				<h4> <em>unleash your inner artist</em></h2>
+				<h1>hipster draw</h1>
+				<h3> <em>unleash your inner artist</em></h3>
+				<h6> please login to continue</h6>
 				<p>
 					<form action = '/' method="POST" name="login">
 						{{ form.hidden_tag() }}
 						{% from "_formhelper.html" import render_field %}
 						
-						Please Login
-						<br></br>
 						<table>
 							<tr>
 								<td class="des"> {{form.email.description}}: </td>
@@ -146,6 +150,9 @@
 					</form>
 				</p>
 				<br></br>
+				<p id = "exists">
+					{{ message2 }}
+				</p>
 				<p>
 					Are you new to hipster draw?
 				</p>
@@ -180,8 +187,7 @@
 		</div>
 		{% endif %}
 
-
-
+		<!--<script> add jquery HERE </script>-->
 		<script type="text/javascript" src="static/js/surface.js"></script>
 		<script type="text/javascript" src="static/js/buffer.js"></script>
 		<script type="text/javascript" src="static/js/penTool.js"></script>

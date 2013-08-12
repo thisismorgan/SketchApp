@@ -6,6 +6,6 @@ import model
 
 class LoginForm(Form):
 	email = TextField('Email',[validators.Email(message= (u'Invalid email address'))], 
-										description=(u'Email'), default=(u'email goes here'))
+										description=(u'email'))
 	password = PasswordField('Password', [validators.Required(), validators.length(min=6, max=25)], 
-										description=(u'Password'), default=(u'Password'))
+										description=(u'password'), default=(u'Password'))

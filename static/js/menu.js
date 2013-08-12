@@ -257,9 +257,20 @@ Menu.prototype =
 		this.logout.href = "/logout";
 		this.logout.style.color = "white";
 		this.logout.style['font-size'] = '10px';
-		this.logout.style.position = "float";
-		this.logout.style.bottom = "60px";
 		this.container.appendChild(this.logout);
+
+		space = document.createElement("div");
+		this.container.appendChild(space);
+
+		this.gallery = document.createElement("a");
+		var linkText2 = document.createTextNode("gallery");
+		this.gallery.appendChild(linkText2);
+		this.gallery.title = "gallery";
+		this.gallery.href = "/gallery";
+		this.gallery.style.color = "white";
+		this.gallery.style['font-size'] = '10px';
+		this.container.appendChild(this.gallery);
+
 
 		breakHere = document.createElement("br");
 		this.container.appendChild(breakHere);
@@ -326,6 +337,14 @@ function undo(){
 // function that saves the image by opening img in a new window
 function saveImage(){
 	var img = surface.canvas.toDataURL('image/png');
+	var myJSONObject = {
+		'image': img
+	}
+	// makes JSON object from JS object
+	var image = JSON.stringify(myJSONObject);
+
+	// go to this route in the controller
+	window.location.href = '/add_gallery';
 	window.open(img, '_blank');
 }
 
