@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, flash, request, session, url_for, g
 from flask.ext.login import login_user, logout_user, current_user, login_required, LoginManager
 from form import LoginForm
+import base64
 import bcrypt
 import model
 import os
@@ -27,26 +28,29 @@ def home():
 		return render_template("main.html")
 
 	message = ""
+	message3 = ""
 	form = LoginForm()
 	if form.validate_on_submit():
 		# can rework this segment because you only need to query once!
 		#need to recreate hashed password and search for this in the database
 		user = model.session.query(model.User).filter_by(email = form.email.data).first()
-		salt_unicode = user.salt
-		salt = salt_unicode.encode('utf-8')
-		password_unicode = form.password.data
-		password = password_unicode.encode('utf-8')
-		hashed = bcrypt.hashpw(password, salt)
+		if user:
+			salt_unicode = user.salt
+			salt = salt_unicode.encode('utf-8')
+			password_unicode = form.password.data
+			password = password_unicode.encode('utf-8')
+			hashed = bcrypt.hashpw(password, salt)
 
-		if hashed == user.password_hash:
-			login_user(user)
-			flash("Welcome")
-		else:
-			flash("Invalid login")
+			if hashed == user.password_hash:
+				login_user(user)
+				flash("Welcome")
+			else:
+				flash("Invalid login")
 
-		message = "welcome back %s" % current_user.nickname
-		return render_template("main.html", message=message)
-	return render_template("main.html", form=form)
+			message = "welcome back %s" % current_user.nickname
+			return render_template("main.html", message=message)
+		message3 = "It appears we don't have that account on file"
+	return render_template("main.html", form=form, message3=message3)
 
 @app.route('/create', methods=['POST', 'GET'])
 def create():
@@ -82,20 +86,37 @@ def create():
 		message = "welcome %s" % user.nickname
 		return render_template("main.html", message=message)
 
-# this is the route you will send image data in order to add it to the database
+# this is the route image data is sent in order to add it to the database
 @app.route('/add_gallery', methods=['POST', 'GET'])
 @login_required
 def add_gallery():
+	""" ADD AN IMAGE TO THE USER'S GALLERY"""
 	message = ""
-	image = request.form.get("image");
 	
+	# image data is base64 png/image.. Need to decode into a binary data structure in order to add to the database
+	screenshot_unicode = request.form.get("image");
+	screenshot= screenshot_unicode.encode('utf-8')
+	new = screenshot.partition(',')
+
+	screenshot_decode = base64.b64decode(new[2])
+	image = model.Image(user_id=current_user.id, url=screenshot_decode)
+	model.session.add(image)
+	model.session.commit()
+
 	# return a string here (do not render_template or redirect-- there's no need to)
 	return render_template("main.html", message=message)
 
 @app.route('/gallery')
 @login_required
 def gallery():
-	return render_template("gallery.html")
+	"""QUERY DATABASE TO ADD ALL OF USER'S SAVED IMAGES TO THEIR GALLERY VIEW"""
+	image_list = model.session.query(model.Image).filter_by(user_id=current_user.id).all()
+	new_image_list = []
+	for image in image_list:
+		new_image = base64.b64encode(image.url)
+		new_image_list.append((new_image, image.id))
+
+	return render_template("gallery.html",images=new_image_list)
 
 @app.route('/logout')
 @login_required

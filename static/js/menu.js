@@ -337,6 +337,7 @@ function undo(){
 // function that saves the image by opening img in a new window
 function saveImage(){
 	var img = surface.canvas.toDataURL('image/png');
+
 	// image data is posted to the /add_gallery route handler in the controller which will save it to the database!
 	$.post("/add_gallery", {image: img});
 	window.open(img, '_blank');

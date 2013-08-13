@@ -25,8 +25,16 @@
 			left: 200px;
 			background-color:black;
 			opacity:0.7;
+			overflow: scroll;
+			-webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.8);
 		}
-
+		{% for id in images %}
+		.border{{ id }}{
+			border-style: solid;
+			border-color: black;
+			border-width: 20px;
+		}
+		{% endfor %}
 		a:link{
 			color:white;
 			text-decoration: none;
@@ -59,8 +67,24 @@
 			<div id = "logout"><a href = "/logout"> logout </a></div>
 			<div id = "back"><a href = "/"> back </a></div>
 		</div>
+		
 		<div class = "gallery">
-			<!-- special code to select images here -->
+			{% for i, id in images %}
+			<br></br>
+			<canvas id = "gallery2{{ id }}" width = "720px" height = "300px"></canvas>
+			<script>
+				var canvas = document.getElementById("gallery2{{ id }}");
+				var ctx{{ id }} = canvas.getContext("2d")
+			</script>
+			<script>
+				var image{{ id }} = new Image();
+				image{{ id }}.src = "data:image/png;base64," + "{{ i }}";
+				image{{ id }}.onload = function(){
+					ctx{{ id }}.drawImage(image{{ id }}, 0, 0, 600, 600 * image{{ id }}.height/image{{ id }}.width);
+				};
+			</script>
+			<br></br>	
+			{% endfor %}
 		</div>
 	</body>
 </html>

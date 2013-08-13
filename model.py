@@ -1,6 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, Integer, String, Text, LargeBinary
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, backref
@@ -44,6 +44,6 @@ class Image(Base):
 
 	id = Column(Integer, primary_key=True)
 	user_id = Column(Integer, ForeignKey('users.id'))
-	url = Column(Text, nullable=True)
+	url = Column(LargeBinary, nullable=True)
 
 	user = relationship("User", backref=backref("images", order_by=id))
