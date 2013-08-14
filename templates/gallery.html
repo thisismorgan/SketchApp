@@ -79,6 +79,9 @@
 			<script>
 				var image{{ id }} = new Image();
 				image{{ id }}.src = "data:image/png;base64," + "{{ i }}";
+				
+				// document.body.appendChild(img);
+
 				image{{ id }}.onload = function(){
 					ctx{{ id }}.drawImage(image{{ id }}, 0, 0, 600, 600 * image{{ id }}.height/image{{ id }}.width);
 				};

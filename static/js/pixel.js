@@ -22,3 +22,4 @@ pixel.prototype.draw = function(current_segment, all_segments, context)
 }
 
 pixel = new pixel();
+registerBrush("pixel",pixel);

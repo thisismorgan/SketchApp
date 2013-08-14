@@ -1,3 +1,13 @@
+var brushes = {}
+
+function registerBrush(name, brush){
+		brushes[name] = brush
+}
+
+function getBrush(name){
+		return brushes.name
+}
+
 
 // creation of the penTool class
 function penTool() {
@@ -25,14 +35,21 @@ penTool.prototype.getMousePos = function(canvas, event)
 }
 	
 
-penTool.prototype.draw = function(pair, current_segment, all_segments, context)
-{
-	current_segment.push(pair);
-	all_segments.push(current_segment);
-	current_segment = [];
-	return current_segment;
+// penTool.prototype.draw = function(pair, current_segment, all_segments, context)
+// {
+// 	current_segment.push(pair);
+// 	all_segments.push(current_segment);
+// 	current_segment = [];
+// 	return current_segment;
+// }
+
+penTool.prototype.draw = function(){
+
 }
 
+penTool.prototype.draw2 = function(){
+
+}
 
 penTool.prototype.handleEvent = function(event){
 	switch(event.type){
@@ -45,7 +62,7 @@ penTool.prototype.handleEvent = function(event){
 				y: y
 			};
 			this.current_segment.push(start)
-			if (menuChanged() == "fancy")
+			if (menu.select.value == "fancy")
 			{
 				fancy.draw(this.current_segment, this.all_segments, surface.context)
 			}
@@ -79,42 +96,27 @@ penTool.prototype.handleEvent = function(event){
 }
 
 
+// var brushes = {
+// 	pencil:pencil,
+// 	pixel:pixel,
+// 	feather:feather,
+// 	buzz:buzz,
+// 	fancy:fancy,
+// 	circles:circles,
+// 	mirrorPencil:mirrorPencil,
+// 	mirrorPixel:mirrorPixel,
+// 	geometric:geometric,
+// 	test:test
+// }
+
+// var brushes = {"pixel": pixel}
+
 // selects appropriate draw function for the tool selected
 function selectTool(current_segment, all_segments, context)
 {
-	if (menuChanged() == "pixel"){
-		pixel.draw(current_segment, all_segments, context);
-	}
-	else if (menuChanged() == "pencil"){
-		pencil.draw(current_segment, all_segments, context, false);
-	}
-	else if (menuChanged() == "feather") {
-		feather.draw(current_segment, all_segments, context)
-	}
-	else if (menuChanged() == "buzz"){
-		buzz.draw(current_segment, all_segments, context)
-	}
-	else if (menuChanged() == "fancy"){
-		// fancy.draw(current_segment, all_segments, context)
-	}
-	else if (menuChanged() == "circles"){
-		circles.draw(current_segment, all_segments, context)
-	}
-	else if (menuChanged() == "mirror pixel"){
-		mirrorPixel.draw(current_segment, all_segments, context)
-	}
-	else if (menuChanged() == "geometric"){
-		geometric.draw(current_segment, all_segments, context)
-		geometric.draw2(current_segment, all_segments, context)
-	}
-	else if (menuChanged() == "mirror pencil"){
-		mirrorPencil.draw(current_segment, all_segments, context)
-		mirrorPencil.draw2(current_segment, all_segments, context)
-	}
-	else if (menuChanged() == "test"){
-		test.draw(current_segment, all_segments, context)
-	}
-	else{
-		console.log(menu.brush);
-	}
+	brush = eval(menu.select.value);
+	brush.draw(current_segment,all_segments,context);
+	brush.draw2(current_segment,all_segments,context);
+
+
 }

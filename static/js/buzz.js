@@ -35,4 +35,5 @@ buzz.prototype.draw = function(current_segment, all_segments, context)
 }
 
 buzz = new buzz();
+registerBrush("buzz",buzz);
 

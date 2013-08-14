@@ -51,3 +51,4 @@ feather.prototype.draw = function(current_segment, all_segments, context)
 }
 
 feather = new feather();
+registerBrush("feather",feather);

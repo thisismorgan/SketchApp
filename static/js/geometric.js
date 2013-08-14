@@ -86,3 +86,4 @@ geometric.prototype.draw2 = function(current_segment, all_segments, context)
 }
 
 geometric = new geometric();
+registerBrush("geometric",geometric);

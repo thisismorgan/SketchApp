@@ -26,3 +26,4 @@ fancy.prototype.draw = function(current_segment, all_segments, context)
 }
 
 fancy = new fancy();
+registerBrush("fancy",fancy);

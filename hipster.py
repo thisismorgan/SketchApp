@@ -103,17 +103,18 @@ def add_gallery():
 	model.session.add(image)
 	model.session.commit()
 
-	# return a string here (do not render_template or redirect-- there's no need to)
 	return render_template("main.html", message=message)
 
 @app.route('/gallery')
 @login_required
 def gallery():
 	"""QUERY DATABASE TO ADD ALL OF USER'S SAVED IMAGES TO THEIR GALLERY VIEW"""
+	# sending reconstructed image url and image id to the appropriate html template
 	image_list = model.session.query(model.Image).filter_by(user_id=current_user.id).all()
 	new_image_list = []
 	for image in image_list:
 		new_image = base64.b64encode(image.url)
+		print len(new_image)
 		new_image_list.append((new_image, image.id))
 
 	return render_template("gallery.html",images=new_image_list)

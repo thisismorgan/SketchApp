@@ -33,3 +33,5 @@ mirrorPixel.prototype.draw = function(current_segment, all_segments, context)
 }
 
 mirrorPixel = new mirrorPixel();
+registerBrush("mirrorPixel",mirrorPixel);
+

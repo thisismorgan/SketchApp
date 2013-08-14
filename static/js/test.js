@@ -30,3 +30,4 @@ test.prototype.draw = function(current_segment, all_segments, context)
 }
 
 test = new test();
+registerBrush("test",test);

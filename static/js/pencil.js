@@ -35,4 +35,6 @@ pencil.prototype.draw = function(current_segment, all_segments, context)
 
 
 pencil = new pencil();
+registerBrush("pencil",pencil);
+
 

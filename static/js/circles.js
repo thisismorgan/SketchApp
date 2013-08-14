@@ -25,3 +25,4 @@ circles.prototype.draw = function(current_segment, all_segments, context)
 }
 
 circles = new circles();
+registerBrush("circles",circles);

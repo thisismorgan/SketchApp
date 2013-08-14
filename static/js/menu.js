@@ -84,12 +84,12 @@ Menu.prototype =
 		this.select.appendChild(this.option);
 
 		this.option = document.createElement("option");
-		this.option.value= "mirror pixel";
+		this.option.value= "mirrorPixel";
 		this.option.innerHTML = "mirror pixel";
 		this.select.appendChild(this.option);
 
 		this.option = document.createElement("option");
-		this.option.value= "mirror pencil";
+		this.option.value= "mirrorPencil";
 		this.option.innerHTML = "mirror pencil";
 		this.select.appendChild(this.option);
 
@@ -212,7 +212,7 @@ Menu.prototype =
 
 		// button for saving images
 		this.save = document.createElement("button");
-		this.save.innerHTML = "Save Your Sketch";
+		this.save.innerHTML = "save Your sketch";
 		this.save.style.cursor = "pointer";
 		this.save.style.width = "150px";
 		this.save.style.height = "20px";
@@ -225,13 +225,25 @@ Menu.prototype =
 
 		// undo button
 		this.undo = document.createElement("button");
-		this.undo.innerHTML = "Undo That Move";
+		this.undo.innerHTML = "undo That move";
 		this.undo.style.cursor = "pointer";
 		this.undo.style.width = "150px";
 		this.undo.style.height = "20px";
 		this.undo.style.margin = "6px";
 		this.undo.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 15.0)";
 		this.container.appendChild(this.undo);
+
+		space = document.createElement("div");
+		this.container.appendChild(space);
+
+		this.gallery = document.createElement("button");
+		this.gallery.innerHTML = "gallery"
+		this.gallery.style.cursor = "pointer";
+		this.gallery.style.width = "150px";
+		this.gallery.style.height = "20px";
+		this.gallery.style.margin = "6px";
+		this.gallery.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 15.0)";
+		this.container.appendChild(this.gallery);
 
 		space = document.createElement("div");
 		this.container.appendChild(space);
@@ -262,23 +274,11 @@ Menu.prototype =
 		space = document.createElement("div");
 		this.container.appendChild(space);
 
-		this.gallery = document.createElement("a");
-		var linkText2 = document.createTextNode("gallery");
-		this.gallery.appendChild(linkText2);
-		this.gallery.title = "gallery";
-		this.gallery.href = "/gallery";
-		this.gallery.style.color = "white";
-		this.gallery.style['font-size'] = '10px';
-		this.container.appendChild(this.gallery);
-
-
 		breakHere = document.createElement("br");
 		this.container.appendChild(breakHere);
 
 		document.body.appendChild(this.container);
 	}
-
-
 }
 
 //color selection function
@@ -286,42 +286,10 @@ function colorSwatch(event){
 	menu.swatch = event.target.style.background;
 }
 
+
 // provides functionality to drop-down menu for brush selection
 function menuChanged() {
-	if (menu.select.value == "pencil"){
-		menu.brush = "pencil";
-	}
-	else if (menu.select.value == "pixel"){
-		menu.brush = "pixel";
-	}
-	else if (menu.select.value == "feather"){
-		menu.brush = "feather";
-	}
-	else if (menu.select.value == "buzz"){
-		menu.brush = "buzz";
-	}
-	else if (menu.select.value == "fancy"){
-		menu.brush = "fancy";
-	}
-	else if (menu.select.value == "circles"){
-		menu.brush = "circles";
-	}
-	else if (menu.select.value == "mirror pixel"){
-		menu.brush = "mirror pixel";
-	}
-	else if (menu.select.value == "geometric"){
-		menu.brush = "geometric";
-	}
-	else if (menu.select.value == "test"){
-		menu.brush = "test";
-	}
-	else if (menu.select.value == "mirror pencil"){
-		menu.brush = "mirror pencil";
-	}
-	else{
-		console.log("Error in menuChanged");
-	}
-	return menu.brush;
+	return menu.select.value;
 }
 
 // function that clears canvas
@@ -341,6 +309,11 @@ function saveImage(){
 	// image data is posted to the /add_gallery route handler in the controller which will save it to the database!
 	$.post("/add_gallery", {image: img});
 	window.open(img, '_blank');
+}
+
+//provides link functionality to the gallery button
+function gallery(){
+	window.location.href = '/gallery';
 }
 
 // two functions to show/hide menu according to mouse placement
@@ -370,3 +343,4 @@ menu.seventhColor.addEventListener('click', colorSwatch, false);
 menu.clearImage.addEventListener('click', clearCanvas, false);
 menu.undo.addEventListener('click', undo, false);
 menu.save.addEventListener('click', saveImage, false);
+menu.gallery.addEventListener('click', gallery, false);
