@@ -17,6 +17,10 @@ function penTool() {
 	this.all_segments = [];
 	this.line_drawn = false;
 	this.buffer = buffer;
+	// this.s = 1;
+	this.imgd1 = null;
+	this.imgd2 = null;
+	this.surface_list = []
 	surface.canvas.addEventListener('mousedown', this, false);
 	surface.canvas.addEventListener('mousemove', this, false);
 	surface.canvas.addEventListener('mouseup', this, false);
@@ -42,6 +46,7 @@ penTool.prototype.draw2 = function(){
 
 }
 
+
 penTool.prototype.redraw = function(){
 	for(var i=0; i<this.all_segments.length; i++){
 		brush = this.all_segments[i].tool;
@@ -54,13 +59,24 @@ penTool.prototype.redraw = function(){
 
 penTool.prototype.selectTool = function(current_segment, all_segments, context)
 {
+	// this.new_surface = "surface" + this.s
+	// this.new_surface = new Surface();
 	brush.draw(this.current_segment.coord_list, this.all_segments, surface.context);
 	brush.draw2(this.current_segment.coord_list, this.all_segments, surface.context);
+	// console.log(this.s);
 }
+
+// penTool.prototype.redrawCanvas = function(){
+// 	var destCtx = surface.context;
+// 	for(var i=0; i < this.surface_list.length; i++){
+// 		destCtx.drawImage(this.surface_list[i], 0, 0);
+// 	}
+// }
 
 penTool.prototype.handleEvent = function(event){
 	switch(event.type){
 		case 'mousedown':
+			this.imgd1 = surface.context.getImageData(0, 0, canvas.width, canvas.height);
 			var mousePos = this.getMousePos(surface.canvas, event);
 			var x = mousePos.x;
 			var y = mousePos.y;
@@ -78,7 +94,7 @@ penTool.prototype.handleEvent = function(event){
 			this.all_segments.push(this.current_segment);
 			if (brush == fancy)
 			{
-				// fancy.draw(this.current_segment.coord_list, this.all_segments, surface.context)
+				fancy.draw(this.current_segment.coord_list, this.all_segments, surface.context)
 			}
 			this.line_drawn = true;
 			break;
@@ -107,6 +123,10 @@ penTool.prototype.handleEvent = function(event){
 			// this.all_segments.push(this.current_segment);
 			this.current_segment = [];
 			this.line_drawn = false
+			// this.redrawCanvas();
+			// this.surface_list.push(this.new_surface);
+			// this.s = this.s + 1;
+			this.imgd2 = surface.context.getImageData(0, 0, canvas.width, canvas.height);
 			break;
 	}
 }

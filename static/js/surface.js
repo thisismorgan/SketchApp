@@ -14,13 +14,13 @@ Surface.prototype =
 	this.context = this.canvas.getContext("2d");
 	
 	//to save this image you need to give it a white background (otherwise the default background is transparent..)
-	this.context.fillStyle = "white";
-	this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+	// this.context.fillStyle = "white";
+	// this.context.fillStyle = "rgba(0,0,0,0)";
+	// this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 	}
 
 }
 
 
 surface = new Surface();
-
 

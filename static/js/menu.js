@@ -299,11 +299,18 @@ function clearCanvas(){
 	// brush.all_segments = [];
 }
 
-// function doesn't work yet!
+// It works!! But you can only undo once. Womp
 function undo(){
-	p.all_segments.pop();
+	// p.all_segments.pop();
+	// clearCanvas();
+	// p.redraw();
+	
+	// clearCanvas();
+	// p.surface_list.pop();
+	// p.redrawCanvas();
+
 	clearCanvas();
-	p.redraw();
+	surface.context.putImageData(p.imgd1, 0, 0);
 }
 
 // function that saves the image by opening img in a new window
