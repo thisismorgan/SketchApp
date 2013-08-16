@@ -6,9 +6,10 @@ function pixel(){
 pixel.prototype = new penTool();
 pixel.prototype.constructor = pixel;
 
-pixel.prototype.draw = function(current_segment, all_segments, context)
+pixel.prototype.draw = function(current_segment, all_segments, context, color)
 {
-	context.fillStyle = menu.swatch;
+	color = color || menu.swatch;
+	context.fillStyle = color;
 	context.globalAlpha = 0.2;
 	context.globalCompositeOperation = 'source-over';
 
@@ -16,8 +17,8 @@ pixel.prototype.draw = function(current_segment, all_segments, context)
 		context.fillRect(current_segment[i].x, current_segment[i].y, 2, 2);
 	}
 
-	all_segments.push(current_segment);
-	current_segment = [];
+	// all_segments.push(current_segment);
+	// current_segment = [];
 	return current_segment;
 }
 

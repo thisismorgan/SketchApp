@@ -8,12 +8,13 @@ pencil.prototype.constructor = pencil;
 
 
 // draw function helps smooth lines drawn using splines by curving to midpoints between subsequent sample points
-pencil.prototype.draw = function(current_segment, all_segments, context)
+pencil.prototype.draw = function(current_segment, all_segments, context, color)
 {
+	color = color || menu.swatch;
 	context.lineWidth = 1;
 	context.lineCap = "round";
 	context.lineJoin = "round";
-	context.strokeStyle = menu.swatch;
+	context.strokeStyle = color;
 	context.globalAlpha = 0.5;
 	context.globalCompositeOperation = 'destination-atop';
 
@@ -28,8 +29,7 @@ pencil.prototype.draw = function(current_segment, all_segments, context)
 		context.quadraticCurveTo(current_segment[i].x,current_segment[i].y, xc, yc);
 		context.stroke();
 	}
-	all_segments.push(current_segment);
-	current_segment = [];
+
 	return current_segment;
 }
 

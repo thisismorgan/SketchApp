@@ -8,12 +8,13 @@ buzz.prototype.constructor = buzz;
 
 
 // draw function helps smooth lines drawn using splines by curving to midpoints between subsequent sample points
-buzz.prototype.draw = function(current_segment, all_segments, context)
+buzz.prototype.draw = function(current_segment, all_segments, context, color)
 {
+	color = color || menu.swatch;
 	context.lineWidth = 3;
 	context.lineCap = "round";
 	context.lineJoin = "round";
-	context.strokeStyle = menu.swatch;
+	context.strokeStyle = color;
 	context.globalAlpha = 0.5;
 	context.globalCompositeOperation = 'destination-atop';
 
@@ -29,8 +30,7 @@ buzz.prototype.draw = function(current_segment, all_segments, context)
 		context.stroke();
 		context.beginPath();
 	}
-	all_segments.push(current_segment);
-	current_segment = [];
+
 	return current_segment;
 }
 

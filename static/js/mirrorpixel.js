@@ -6,11 +6,12 @@ function mirrorPixel(){
 mirrorPixel.prototype = new penTool();
 mirrorPixel.prototype.constructor = mirrorPixel;
 
-mirrorPixel.prototype.draw = function(current_segment, all_segments, context)
+mirrorPixel.prototype.draw = function(current_segment, all_segments, context, color)
 {
 	var num = 2;
 	for(i=0; i<current_segment.length; i++){
-		context.fillStyle = menu.swatch;
+		color = color || menu.swatch;
+		context.fillStyle = color;
 		context.globalAlpha = 0.2;
 		context.globalCompositeOperation = 'source-over';
 
@@ -27,8 +28,8 @@ mirrorPixel.prototype.draw = function(current_segment, all_segments, context)
 		}
 	}
 
-	all_segments.push(current_segment);
-	current_segment = [];
+	// all_segments.push(current_segment);
+	// current_segment = [];
 	return current_segment;
 }
 

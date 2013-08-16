@@ -6,11 +6,14 @@ function fancy(){
 fancy.prototype = new penTool();
 fancy.prototype.constructor = fancy;
 
-fancy.prototype.draw = function(current_segment, all_segments, context)
+fancy.prototype.draw = function(current_segment, all_segments, context, color)
 {
 	for(i=0; i<current_segment.length; i++){
-		context.strokeStyle = menu.swatch;
+		color = color || menu.swatch;
+		context.strokeStyle = color;
 		context.globalAlpha = 0.2;
+		console.log("fancy");
+		console.log(context.globalAlpha);
 		context.globalCompositeOperation = 'source-over';
 		var radius = Math.floor(50*Math.random());
 		// var radius = 50
@@ -20,8 +23,8 @@ fancy.prototype.draw = function(current_segment, all_segments, context)
 		context.stroke();
 	}
 
-	all_segments.push(current_segment);
-	current_segment = [];
+	// all_segments.push(current_segment);
+	// current_segment = [];
 	return current_segment;
 }
 

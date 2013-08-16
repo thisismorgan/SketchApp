@@ -8,11 +8,12 @@ test.prototype.constructor = test;
 
 
 // draw function helps smooth lines drawn using splines by curving to midpoints between subsequent sample points
-test.prototype.draw = function(current_segment, all_segments, context)
+test.prototype.draw = function(current_segment, all_segments, context, color)
 {
+	color = color || menu.swatch;
 	context.lineWidth = 0.5;
 	context.lineCap = "round";
-	context.strokeStyle = menu.swatch;
+	context.strokeStyle = color;
 	context.globalAlpha = 0.5;
 	context.globalCompositeOperation = 'destination-atop';
 	for(i=0; i<current_segment.length; i++){

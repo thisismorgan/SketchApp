@@ -34,15 +34,6 @@ penTool.prototype.getMousePos = function(canvas, event)
 		};
 }
 	
-
-// penTool.prototype.draw = function(pair, current_segment, all_segments, context)
-// {
-// 	current_segment.push(pair);
-// 	all_segments.push(current_segment);
-// 	current_segment = [];
-// 	return current_segment;
-// }
-
 penTool.prototype.draw = function(){
 
 }
@@ -51,72 +42,81 @@ penTool.prototype.draw2 = function(){
 
 }
 
+penTool.prototype.redraw = function(){
+	for(var i=0; i<this.all_segments.length; i++){
+		brush = this.all_segments[i].tool;
+		console.log(brush);
+		color = this.all_segments[i].color;
+		brush.draw(this.all_segments[i].coord_list, this.all_segments, surface.context, color);
+		brush.draw2(this.all_segments[i].coord_list, this.all_segments, surface.context, color);
+	}
+}
+
+penTool.prototype.selectTool = function(current_segment, all_segments, context)
+{
+	brush.draw(this.current_segment.coord_list, this.all_segments, surface.context);
+	brush.draw2(this.current_segment.coord_list, this.all_segments, surface.context);
+}
+
 penTool.prototype.handleEvent = function(event){
 	switch(event.type){
 		case 'mousedown':
-			var mousePos = penTool.prototype.getMousePos(surface.canvas, event);
+			var mousePos = this.getMousePos(surface.canvas, event);
 			var x = mousePos.x;
 			var y = mousePos.y;
 			var start = {
 				x: x,
 				y: y
 			};
-			this.current_segment.push(start)
-			if (menu.select.value == "fancy")
+			brush = eval(menu.select.value)
+			this.current_segment = {
+				tool: brush,
+				color: menu.swatch,
+				coord_list:[]
+			}
+			this.current_segment.coord_list.push(start)
+			this.all_segments.push(this.current_segment);
+			if (brush == fancy)
 			{
-				fancy.draw(this.current_segment, this.all_segments, surface.context)
+				// fancy.draw(this.current_segment.coord_list, this.all_segments, surface.context)
 			}
 			this.line_drawn = true;
 			break;
 		case 'mousemove':
 		    if (this.line_drawn == true){
-			var mousePos = penTool.prototype.getMousePos(surface.canvas, event);
+			var mousePos = this.getMousePos(surface.canvas, event);
 			var x = mousePos.x;
 			var y = mousePos.y;
 			var next = {
 				x: x,
 				y: y
 			};
-			this.current_segment.push(next)
-			selectTool(this.current_segment, this.all_segments, surface.context);
+			this.current_segment.coord_list.push(next)
+			// this.redraw();
+			this.selectTool(this.current_segment.coord_list, this.all_segments, surface.context);
 			}
 			break;
 		case 'mouseup':
-			var mousePos = penTool.prototype.getMousePos(surface.canvas, event);
+			var mousePos = this.getMousePos(surface.canvas, event);
 			var x = mousePos.x;
 			var y = mousePos.y;
 			var last = {
 				x: x,
 				y: y
 			};
+			// this.all_segments.push(this.current_segment);
 			this.current_segment = [];
 			this.line_drawn = false
 			break;
 	}
 }
 
+p = new penTool();
 
-// var brushes = {
-// 	pencil:pencil,
-// 	pixel:pixel,
-// 	feather:feather,
-// 	buzz:buzz,
-// 	fancy:fancy,
-// 	circles:circles,
-// 	mirrorPencil:mirrorPencil,
-// 	mirrorPixel:mirrorPixel,
-// 	geometric:geometric,
-// 	test:test
+// // selects appropriate draw function for the tool selected
+// function selectTool(current_segment, all_segments, context)
+// {
+// 	brush = eval(menu.select.value);
+// 	brush.draw(brush.current_segment.coord_list, brush.all_segments, surface.context);
+// 	brush.draw2(brush.current_segment.coord_list, brush.all_segments, surface.context);
 // }
-
-// var brushes = {"pixel": pixel}
-
-// selects appropriate draw function for the tool selected
-function selectTool(current_segment, all_segments, context)
-{
-	brush = eval(menu.select.value);
-	brush.draw(current_segment,all_segments,context);
-	brush.draw2(current_segment,all_segments,context);
-
-
-}

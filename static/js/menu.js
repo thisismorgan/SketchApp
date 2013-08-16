@@ -15,7 +15,7 @@ Menu.prototype =
 	clear: null,
 	option: null,
 	brush: null,
-	swatch: null,
+	swatch: "#236E55",
 
 
 	init: function()
@@ -294,12 +294,16 @@ function menuChanged() {
 
 // function that clears canvas
 function clearCanvas(){
-	canvas.width = canvas.width;
+	// canvas.width = canvas.width;
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	// brush.all_segments = [];
 }
 
 // function doesn't work yet!
 function undo(){
-	penTool.all_segments.pop();
+	p.all_segments.pop();
+	clearCanvas();
+	p.redraw();
 }
 
 // function that saves the image by opening img in a new window

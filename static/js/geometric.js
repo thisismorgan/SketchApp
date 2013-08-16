@@ -9,11 +9,13 @@ geometric.prototype.constructor = geometric;
 
 
 // draw function helps smooth lines drawn using splines by curving to midpoints between subsequent sample points
-geometric.prototype.draw = function(current_segment, all_segments, context)
+geometric.prototype.draw = function(current_segment, all_segments, context, color)
 {
+	color = color || menu.swatch;
 	context.lineWidth = 0.5;
 	context.lineCap = "round";
-	context.strokeStyle = menu.swatch;
+	// context.strokeStyle = menu.swatch;
+	context.strokeStyle = color;
 	context.globalAlpha = 0.5;
 	context.globalCompositeOperation = 'destination-atop';
 	this.count = 0
@@ -47,12 +49,14 @@ geometric.prototype.draw = function(current_segment, all_segments, context)
 	return current_segment;
 }
 
-geometric.prototype.draw2 = function(current_segment, all_segments, context)
+geometric.prototype.draw2 = function(current_segment, all_segments, context, color)
 {
+	color = color || menu.swatch;
 	context.lineWidth = 1;
 	context.lineCap = "round";
 	// context.lineJoin = "round";
-	context.strokeStyle = menu.swatch;
+	// context.strokeStyle = menu.swatch;
+	context.strokeStyle = color;
 	for(i=0; i<current_segment.length - 2; i++){
 		if (current_segment[i].x < surface.canvas.width / 2)
 		{
@@ -80,8 +84,8 @@ geometric.prototype.draw2 = function(current_segment, all_segments, context)
 		}
 	}	
 
-	all_segments.push(current_segment);
-	current_segment = [];
+	// all_segments.push(current_segment);
+	// current_segment = [];
 	return current_segment;
 }
 

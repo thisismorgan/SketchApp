@@ -6,12 +6,16 @@ function circles(){
 circles.prototype = new penTool();
 circles.prototype.constructor = circles;
 
-circles.prototype.draw = function(current_segment, all_segments, context)
+circles.prototype.draw = function(current_segment, all_segments, context, color)
 {
-	for(i=0; i<current_segment.length; i++){
-		context.strokeStyle = menu.swatch;
+	color = color || menu.swatch;
+	for(var i=0; i<current_segment.length; i++){
+		context.strokeStyle = color;
 		context.globalAlpha = 0.5;
 		context.globalCompositeOperation = 'source-over';
+		console.log(color);
+		console.log(context.globalAlpha);
+		console.log(context.globalCompositeOperation);
 		var radius = 50
 		context.beginPath();
 		context.arc(current_segment[i].x, current_segment[i].y, radius, 0, 2*Math.PI, false);
@@ -19,8 +23,6 @@ circles.prototype.draw = function(current_segment, all_segments, context)
 		context.stroke();
 	}
 
-	all_segments.push(current_segment);
-	current_segment = [];
 	return current_segment;
 }
 
