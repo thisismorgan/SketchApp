@@ -14,12 +14,11 @@ geometric.prototype.draw = function(current_segment, all_segments, context, colo
 	color = color || menu.swatch;
 	context.lineWidth = 0.5;
 	context.lineCap = "round";
-	// context.strokeStyle = menu.swatch;
 	context.strokeStyle = color;
 	context.globalAlpha = 0.5;
 	context.globalCompositeOperation = 'destination-atop';
 	this.count = 0
-	for(i=0; i<current_segment.length - 2; i++){
+	for(var i=0; i<current_segment.length - 2; i++){
 		if (i == 0) {
 			context.beginPath();
 			context.moveTo(current_segment[i].x, current_segment[i].y);
@@ -54,10 +53,8 @@ geometric.prototype.draw2 = function(current_segment, all_segments, context, col
 	color = color || menu.swatch;
 	context.lineWidth = 1;
 	context.lineCap = "round";
-	// context.lineJoin = "round";
-	// context.strokeStyle = menu.swatch;
 	context.strokeStyle = color;
-	for(i=0; i<current_segment.length - 2; i++){
+	for(var i=0; i<current_segment.length - 2; i++){
 		if (current_segment[i].x < surface.canvas.width / 2)
 		{
 			if (i == 0)
@@ -84,10 +81,7 @@ geometric.prototype.draw2 = function(current_segment, all_segments, context, col
 		}
 	}	
 
-	// all_segments.push(current_segment);
-	// current_segment = [];
 	return current_segment;
 }
 
 geometric = new geometric();
-registerBrush("geometric",geometric);

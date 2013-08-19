@@ -9,7 +9,7 @@ mirrorPixel.prototype.constructor = mirrorPixel;
 mirrorPixel.prototype.draw = function(current_segment, all_segments, context, color)
 {
 	var num = 2;
-	for(i=0; i<current_segment.length; i++){
+	for(var i=0; i<current_segment.length; i++){
 		color = color || menu.swatch;
 		context.fillStyle = color;
 		context.globalAlpha = 0.2;
@@ -28,11 +28,8 @@ mirrorPixel.prototype.draw = function(current_segment, all_segments, context, co
 		}
 	}
 
-	// all_segments.push(current_segment);
-	// current_segment = [];
 	return current_segment;
 }
 
 mirrorPixel = new mirrorPixel();
-registerBrush("mirrorPixel",mirrorPixel);
 

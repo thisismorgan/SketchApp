@@ -1,9 +1,12 @@
 <html>
 	<head>
 		<style>
-			*{
+		*{
 			font-family: "Arial", sans-serif;
-			}
+		}
+		body{
+			margin: 0px;
+		}
 		.hipster{
 			color: white;
 			text-align: center;
@@ -19,22 +22,19 @@
 		.gallery{
 			text-align: center;
 			display:block;
-			position:fixed;
+			/*position:fixed;*/
 			height:100%;
 			width: 1400px;
 			left: 200px;
-			background-color:black;
-			opacity:0.7;
+			background-color:rgb(77,77,77);
 			overflow: scroll;
 			-webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.8);
 		}
-		{% for id in images %}
-		.border{{ id }}{
-			border-style: solid;
-			border-color: black;
-			border-width: 20px;
+		canvas{
+			/*border: 2px solid black;*/
+			/*-webkit-box-shadow: 20px 10px 5px rgba(0, 0, 0, 0.8);*/
+			-webkit-box-shadow: 0px 1px 50px rgba(0, 0, 0, 0.8);
 		}
-		{% endfor %}
 		a:link{
 			color:white;
 			text-decoration: none;
@@ -71,7 +71,7 @@
 		<div class = "gallery">
 			{% for i, id in images %}
 			<br></br>
-			<canvas id = "gallery2{{ id }}" width = "720px" height = "300px"></canvas>
+			<div class= "container"><canvas id = "gallery2{{ id }}" width = "720px" height = "300px"></canvas></div>
 			<script>
 				var canvas = document.getElementById("gallery2{{ id }}");
 				var ctx{{ id }} = canvas.getContext("2d")
@@ -79,11 +79,8 @@
 			<script>
 				var image{{ id }} = new Image();
 				image{{ id }}.src = "data:image/png;base64," + "{{ i }}";
-				
-				// document.body.appendChild(img);
-
 				image{{ id }}.onload = function(){
-					ctx{{ id }}.drawImage(image{{ id }}, 0, 0, 600, 600 * image{{ id }}.height/image{{ id }}.width);
+					ctx{{ id }}.drawImage(image{{ id }}, 0, 0, 720, 300);
 				};
 			</script>
 			<br></br>	

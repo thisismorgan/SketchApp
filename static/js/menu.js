@@ -20,7 +20,6 @@ Menu.prototype =
 
 	init: function()
 	{
-		// this.container = document.getElementById("menu");
 		this.container = document.createElement("div");
 		this.container.className = "hipster menu";
 		this.container.style.background = "#2E2E2E";
@@ -36,9 +35,6 @@ Menu.prototype =
 
 		space = document.createElement("div");
 		this.container.appendChild(space);
-
-		// title = document.createTextNode("hipster draw");
-		// this.container.appendChild(title);
 
 		space = document.createElement("div");
 		this.container.appendChild(space);
@@ -210,13 +206,43 @@ Menu.prototype =
 		this.container.appendChild(space);
 
 
+		// button for inverting the color of images
+		this.invert = document.createElement("button");
+		this.invert.innerHTML = "invert your sketch";
+		this.invert.style.cursor = "pointer";
+		this.invert.style.width = "150px";
+		this.invert.style.height = "20px";
+		this.invert.style.margin = "3px";
+		this.invert.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 15.0)";
+		this.container.appendChild(this.invert);
+
+
+		space = document.createElement("div");
+		this.container.appendChild(space);
+
+		
+		// button for drawing the image in grayscale
+		this.grey = document.createElement("button");
+		this.grey.innerHTML = "grayscale";
+		this.grey.style.cursor = "pointer";
+		this.grey.style.width = "150px";
+		this.grey.style.height = "20px";
+		this.grey.style.margin = "3px";
+		this.grey.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 15.0)";
+		this.container.appendChild(this.grey);
+
+
+		space = document.createElement("div");
+		this.container.appendChild(space);
+
+
 		// button for saving images
 		this.save = document.createElement("button");
-		this.save.innerHTML = "save Your sketch";
+		this.save.innerHTML = "save your sketch";
 		this.save.style.cursor = "pointer";
 		this.save.style.width = "150px";
 		this.save.style.height = "20px";
-		this.save.style.margin = "6px";
+		this.save.style.margin = "3px";
 		this.save.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 15.0)";
 		this.container.appendChild(this.save);
 
@@ -225,11 +251,11 @@ Menu.prototype =
 
 		// undo button
 		this.undo = document.createElement("button");
-		this.undo.innerHTML = "undo That move";
+		this.undo.innerHTML = "undo that move";
 		this.undo.style.cursor = "pointer";
 		this.undo.style.width = "150px";
 		this.undo.style.height = "20px";
-		this.undo.style.margin = "6px";
+		this.undo.style.margin = "3px";
 		this.undo.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 15.0)";
 		this.container.appendChild(this.undo);
 
@@ -241,7 +267,7 @@ Menu.prototype =
 		this.gallery.style.cursor = "pointer";
 		this.gallery.style.width = "150px";
 		this.gallery.style.height = "20px";
-		this.gallery.style.margin = "6px";
+		this.gallery.style.margin = "3px";
 		this.gallery.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 15.0)";
 		this.container.appendChild(this.gallery);
 
@@ -255,7 +281,7 @@ Menu.prototype =
 		this.clearImage.style['font-weight'] = "bold";
 		this.clearImage.style.width = "150px";
 		this.clearImage.style.height = "20px";
-		this.clearImage.style.margin = "6px";
+		this.clearImage.style.margin = "3px";
 		this.clearImage.style['-webkit-box-shadow'] = "0px 1px 5px rgba(0, 0, 0, 15.0)";
 		this.container.appendChild(this.clearImage);
 
@@ -294,23 +320,52 @@ function menuChanged() {
 
 // function that clears canvas
 function clearCanvas(){
-	// canvas.width = canvas.width;
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	// brush.all_segments = [];
+	p.image_list = [];
+	canvas.width = canvas.width;
+	surface.context.fillStyle = "white";
+	surface.context.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-// It works!! But you can only undo once. Womp
-function undo(){
-	// p.all_segments.pop();
-	// clearCanvas();
-	// p.redraw();
-	
-	// clearCanvas();
-	// p.surface_list.pop();
-	// p.redrawCanvas();
+function invertImage(){
+	p.image_list.push(surface.context.getImageData(0, 0, canvas.width, canvas.height));
+	var imgd2 = p.image_list[p.image_list.length - 1];
+	var data = imgd2.data;
+	for (var i=-0; i<data.length; i+=4){
+		data[i] = 255 - data[i];
+		data[i + 1] = 255 - data[i + 1];
+		data[i + 2] = 255 - data[i + 2];
+	}
 
-	clearCanvas();
-	surface.context.putImageData(p.imgd1, 0, 0);
+	//overwrite existing image
+	surface.context.putImageData(imgd2,0,0);
+}
+
+function greyImage(){
+	p.image_list.push(surface.context.getImageData(0, 0, canvas.width, canvas.height));
+	var imgd2 = p.image_list[p.image_list.length - 1];
+	var data = imgd2.data;
+	for (var i=-0; i<data.length; i+=4){
+		brightness = 0.34 * data[i] + 0.5 * data[i+1] + 0.16 * data[i+2];
+		data[i] = brightness;
+		data[i + 1] = brightness;
+		data[i + 2] = brightness;
+	}
+
+	//overwrite existing image
+	surface.context.putImageData(imgd2,0,0);
+}
+
+// It works!!
+function undo(){
+	canvas.width = canvas.width;
+	surface.context.fillStyle = "white";
+	surface.context.fillRect(0, 0, canvas.width, canvas.height);
+	p.image_list.pop()
+	if (p.image_list.length > 0)
+	{
+		var imgd = p.image_list[p.image_list.length - 1];
+		surface.context.putImageData(imgd,0,0);
+	}
 }
 
 // function that saves the image by opening img in a new window
@@ -355,3 +410,5 @@ menu.clearImage.addEventListener('click', clearCanvas, false);
 menu.undo.addEventListener('click', undo, false);
 menu.save.addEventListener('click', saveImage, false);
 menu.gallery.addEventListener('click', gallery, false);
+menu.invert.addEventListener('click', invertImage, false);
+menu.grey.addEventListener('click', greyImage, false);

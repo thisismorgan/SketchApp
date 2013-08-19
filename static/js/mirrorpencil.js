@@ -36,9 +36,8 @@ mirrorPencil.prototype.draw2 = function(current_segment, all_segments, context, 
 	color = color || menu.swatch;
 	context.lineWidth = 0.5;
 	context.lineCap = "round";
-	// context.lineJoin = "round";
 	context.strokeStyle = color;
-	for(i=0; i<current_segment.length - 2; i++){
+	for(var i=0; i<current_segment.length - 2; i++){
 		if (current_segment[i].x < surface.canvas.width / 2)
 		{
 			if (i == 0)
@@ -65,10 +64,7 @@ mirrorPencil.prototype.draw2 = function(current_segment, all_segments, context, 
 		}
 	}	
 
-	// all_segments.push(current_segment);
-	// current_segment = [];
 	return current_segment;
 }
 
 mirrorPencil = new mirrorPencil();
-registerBrush("mirrorPencil",mirrorPencil);

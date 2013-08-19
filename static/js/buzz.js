@@ -18,7 +18,7 @@ buzz.prototype.draw = function(current_segment, all_segments, context, color)
 	context.globalAlpha = 0.5;
 	context.globalCompositeOperation = 'destination-atop';
 
-	for(i=0; i<current_segment.length - 2; i++){
+	for(var i=0; i<current_segment.length - 2; i++){
 		if (i == 0) {
 			var start_point = current_segment[0];
 			context.beginPath();
@@ -35,5 +35,4 @@ buzz.prototype.draw = function(current_segment, all_segments, context, color)
 }
 
 buzz = new buzz();
-registerBrush("buzz",buzz);
 

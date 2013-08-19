@@ -17,7 +17,7 @@ feather.prototype.draw = function(current_segment, all_segments, context, color)
 	context.globalAlpha = 0.5;
 	context.globalCompositeOperation = 'destination-atop';
 	
-	for(i=0; i<current_segment.length; i++){
+	for(var i=0; i<current_segment.length; i++){
 		context.lineWidth = 1;
 		if (i == 0) {
 			var start_point = current_segment[0];
@@ -50,4 +50,3 @@ feather.prototype.draw = function(current_segment, all_segments, context, color)
 }
 
 feather = new feather();
-registerBrush("feather",feather);
