@@ -13,9 +13,6 @@ circles.prototype.draw = function(current_segment, all_segments, context, color)
 		context.strokeStyle = color;
 		context.globalAlpha = 0.5;
 		context.globalCompositeOperation = 'source-over';
-		console.log(color);
-		console.log(context.globalAlpha);
-		console.log(context.globalCompositeOperation);
 		var radius = 50
 		context.beginPath();
 		context.arc(current_segment[i].x, current_segment[i].y, radius, 0, 2*Math.PI, false);
@@ -27,4 +24,3 @@ circles.prototype.draw = function(current_segment, all_segments, context, color)
 }
 
 circles = new circles();
-registerBrush("circles",circles);

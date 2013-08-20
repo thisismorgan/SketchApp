@@ -21,3 +21,8 @@ pixel.prototype.draw = function(current_segment, all_segments, context, color)
 }
 
 pixel = new pixel();
+<<<<<<< HEAD
+registerBrush("pixel",pixel);
+
+=======
+>>>>>>> undo
