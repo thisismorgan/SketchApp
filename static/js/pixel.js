@@ -17,10 +17,9 @@ pixel.prototype.draw = function(current_segment, all_segments, context, color)
 		context.fillRect(current_segment[i].x, current_segment[i].y, 2, 2);
 	}
 
-	// all_segments.push(current_segment);
-	// current_segment = [];
 	return current_segment;
 }
 
 pixel = new pixel();
 registerBrush("pixel",pixel);
+

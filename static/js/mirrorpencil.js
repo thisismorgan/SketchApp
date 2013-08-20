@@ -65,10 +65,9 @@ mirrorPencil.prototype.draw2 = function(current_segment, all_segments, context, 
 		}
 	}	
 
-	// all_segments.push(current_segment);
-	// current_segment = [];
 	return current_segment;
 }
 
 mirrorPencil = new mirrorPencil();
 registerBrush("mirrorPencil",mirrorPencil);
+

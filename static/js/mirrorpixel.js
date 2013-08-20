@@ -28,11 +28,10 @@ mirrorPixel.prototype.draw = function(current_segment, all_segments, context, co
 		}
 	}
 
-	// all_segments.push(current_segment);
-	// current_segment = [];
 	return current_segment;
 }
 
 mirrorPixel = new mirrorPixel();
 registerBrush("mirrorPixel",mirrorPixel);
+
 
