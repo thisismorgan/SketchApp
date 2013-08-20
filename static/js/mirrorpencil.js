@@ -68,8 +68,5 @@ mirrorPencil.prototype.draw2 = function(current_segment, all_segments, context, 
 }
 
 mirrorPencil = new mirrorPencil();
-<<<<<<< HEAD
-registerBrush("mirrorPencil",mirrorPencil);
 
-=======
->>>>>>> undo
+
