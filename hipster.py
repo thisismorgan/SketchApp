@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, flash, request, session, url
 from flask.ext.login import login_user, logout_user, current_user, login_required, LoginManager
 from form import LoginForm
 import base64
-import bcrypt
+# import bcrypt
 import model
 import os
 
@@ -37,13 +37,14 @@ def home():
 		# is verified. If this password matches the email the user is logged in
 		user = model.session.query(model.User).filter_by(email = form.email.data).first()
 		if user:
-			salt_unicode = user.salt
-			salt = salt_unicode.encode('utf-8')
+			# salt_unicode = user.salt
+			# salt = salt_unicode.encode('utf-8')
 			password_unicode = form.password.data
 			password = password_unicode.encode('utf-8')
-			hashed = bcrypt.hashpw(password, salt)
-
-			if hashed == user.password_hash:
+			# hashed = bcrypt.hashpw(password, salt)
+			
+			if password == user.password_hash:
+			# if hashed == user.password_hash:
 				login_user(user)
 			else:
 				message3 = "Incorrect password"
@@ -65,13 +66,14 @@ def create():
 
 	# can only create an account if the password length lies within below stated range
 	if 6 < len(password_unicode) < 25:
-		salt_unicode = bcrypt.gensalt()
-		salt = salt_unicode.encode('utf-8')
+		# salt_unicode = bcrypt.gensalt()
+		# salt = salt_unicode.encode('utf-8')
 		password = password_unicode.encode('utf-8')
-		hashed = bcrypt.hashpw(password, salt)
+		# hashed = bcrypt.hashpw(password, salt)
 
 		# creating a user object from the given data
-		user = model.User(nickname=nickname, email=email, password_hash=hashed, salt=salt)
+		user = model.User(nickname=nickname, email=email, password_hash=password)
+		# user = model.User(nickname=nickname, email=email, password_hash=hashed, salt=salt)
 
 		# checking for a duplicate entry in database
 		# if the query fails, then there's no duplicate, and the new account is created and logged in
