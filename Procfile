@@ -1,1 +1,1 @@
-web: gunicorn hipster: app
+web: gunicorn hipster:app
