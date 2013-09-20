@@ -5,7 +5,9 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.orm.exc import NoResultFound
-
+import os
+import psycopg2
+import urlparse
 
 ENGINE = None
 Session = None
@@ -17,6 +19,17 @@ session = scoped_session(sessionmaker(bind=ENGINE, autocommit=False, autoflush=F
 Base = declarative_base()
 Base.query = session.query_property()
 Base.metadata.create_all(ENGINE)
+
+urlparse.uses_netloc.append("postgres")
+url = urlparse.urlparse(os.environ["DATABASE_URL"])
+
+conn = psycopg2.connect(
+    database=url.path[1:],
+    user=url.username,
+    password=url.password,
+    host=url.hostname,
+    port=url.port
+)
 
 class User(Base):
 	__tablename__= "users"
