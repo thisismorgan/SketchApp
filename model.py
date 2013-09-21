@@ -9,16 +9,12 @@ import os
 import psycopg2
 import urlparse
 
+
 ENGINE = None
 Session = None
 
-ENGINE = create_engine("postgresql://localhost/hipster", echo=True)
-
-session = scoped_session(sessionmaker(bind=ENGINE, autocommit=False, autoflush=False))
-
-Base = declarative_base()
-Base.query = session.query_property()
-Base.metadata.create_all(ENGINE)
+ENGINE = create_engine("postgres://uagvbhqbhyuenv:RrqAnkEkpF2FRsHLJZMHOUb26y@ec2-54-235-192-45.compute-1.amazonaws.com:5432/d457pdii5msihp", echo=True)
+#ENGINE = "postgresql://localhost/hipster", echo=True)
 
 urlparse.uses_netloc.append("postgres")
 url = urlparse.urlparse(os.environ["DATABASE_URL"])
@@ -30,6 +26,13 @@ conn = psycopg2.connect(
     host=url.hostname,
     port=url.port
 )
+
+session = scoped_session(sessionmaker(bind=ENGINE, autocommit=False, autoflush=False))
+
+Base = declarative_base()
+Base.query = session.query_property()
+Base.metadata.create_all(ENGINE)
+
 
 class User(Base):
 	__tablename__= "users"
