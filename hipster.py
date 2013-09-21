@@ -138,5 +138,4 @@ def logout():
 app.secret_key = os.urandom(24)
 
 if __name__ == "__main__":
-	model.Base.metadata.create_all(ENGINE)
 	app.run(debug=True)
